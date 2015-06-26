@@ -1,0 +1,26 @@
+ <div class="shadowbox col-xs-6 col-xs-offset-3">
+ 	<%= form_tag search_flights_path do %>
+ 		<%= label_tag "origin" %>
+ 		<%= text_field_tag "origin" %>
+ 		<br />
+ 		<%= label_tag "destination" %>
+ 		<%= text_field_tag "destination" %>
+ 		<br />
+ 		<%= submit_tag "Search", :class => 'btn btn-primary' %>
+ 	<% end %>
+
+
+  <%= simple_form_for @flight do |f| %>
+    <%= f.input :adultcount %>
+    <%= f.input :childcount %>
+    <%= f.input :infantlapcount %>
+    <%= f.input :infantseatcount %>
+    <%= f.input :seniorcount %>
+    <%= f.input :origin %>
+    <%= f.input :destination %>
+    <%= f.input :departuredate %>
+    <%= f.input :departuredate %>
+    <br />
+    <%= f.submit 'Search', :class => 'btn btn-primary' %>
+  <% end %>
+ </div> 
