@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
+gem 'figaro'
+
+gem 'world_airports'
+
 gem 'simple_form'
 
 gem 'httparty'

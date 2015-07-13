@@ -1,1 +1,20 @@
-<p><%= @response %></p> 
+
+  <% @results.each do |test| %> 
+    <% test["FareInfo"].each do |dest| %>
+      <div class="col-xs-offset-3">
+        <div class="shadowbox col-xs-6 text-center">
+      <% convert_iata = dest["DestinationLocation"] %>
+        Get to <%= WorldAirports.iata("#{convert_iata}").city %> for
+        <b><%= (dest["LowestFare"]).to_i %> </b>bucks
+        </br>
+        You'd Leave: <%= (dest["DepartureDateTime"].to_time).strftime("at %I:%M%p on %m/%d/%Y") %>
+        </br>
+        And return: <%= (dest["ReturnDateTime"].to_time).strftime("at %I:%M%p on %m/%d/%Y")  %>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
+
+
+

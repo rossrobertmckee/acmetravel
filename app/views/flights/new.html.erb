@@ -1,26 +1,82 @@
- <div class="shadowbox col-xs-6 col-xs-offset-3">
- 	<%= form_tag search_flights_path do %>
- 		<%= label_tag "origin" %>
- 		<%= text_field_tag "origin" %>
- 		<br />
- 		<%= label_tag "destination" %>
- 		<%= text_field_tag "destination" %>
- 		<br />
- 		<%= submit_tag "Search", :class => 'btn btn-primary' %>
- 	<% end %>
-
-
-  <%= simple_form_for @flight do |f| %>
-    <%= f.input :adultcount %>
-    <%= f.input :childcount %>
-    <%= f.input :infantlapcount %>
-    <%= f.input :infantseatcount %>
-    <%= f.input :seniorcount %>
-    <%= f.input :origin %>
-    <%= f.input :destination %>
-    <%= f.input :departuredate %>
-    <%= f.input :departuredate %>
-    <br />
-    <%= f.submit 'Search', :class => 'btn btn-primary' %>
-  <% end %>
+<div class="home_search_box">
+  <div class="col-xs-offset-2">
+    <div class="shadowbox col-xs-8">
+     Search Criteria
+    <%= form_tag search_flights_path do %>
+        <%= label_tag "origin" %>
+        <%= text_field_tag "search[origin]" %>
+        <br />
+        <%= label_tag "Max Price" %>
+        <%= text_field_tag "search[maxfare]" %>
+        <br />
+        <%= label_tag "Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[departuredate]" %>
+        <br />
+        <%= label_tag "Return (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[returndate]" %>
+        <br />
+        <%= label_tag "Earliest Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[earliestdeparturedate]" %>
+        <br />
+        <%= label_tag "Latest Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[latestdeparturedate]" %>
+        <br />
+        <%= label_tag "Length of stay" %>
+        <%= number_field_tag "search[lengthofstay]", min: 1, max: 16 %>
+        <br />
+        <%= label_tag "Type of Destination" %>
+        <%= select_tag("search[theme]", options_for_select([['Beach', "beach"], ['Skiing', "skiing"]])) %>
+        <br />
+        <%= submit_tag "Search", :class => 'btn btn-primary' %>
+    <% end %> 
+  </div>
  </div> 
+</div>
+
+
+
+
+
+
+<!-- <form action="search_flights_path" method="POST" role="form" class="form-horizontal">
+
+  <div class="form-group">
+    <label for="origin" class="col-sm-3 control-label">Origin</label>
+    <div class="col-sm-6">
+      <input type="origin" class="form-control" id="origin" placeholder="Leaving from...">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="destinations" class="col-sm-3 control-label">Destination type</label>
+    <div class="col-sm-6">
+    <select name="searchtype" class="form-control">
+      <option value="ip">Somewhere Warm</option>
+      <option value="ss_name">Somewhere I can ski</option>
+      <option value="IS">A place to party</option>
+    </select>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="maxPrice" class="col-sm-3 control-label">Max Price</label>
+    <div class="col-sm-5">
+    <label class="sr-only" for="maxPrice">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="text" class="form-control" id="maxPrice" placeholder="Amount">
+      <div class="input-group-addon">.00</div>
+    </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+
+</form>
+</div>
+ -->

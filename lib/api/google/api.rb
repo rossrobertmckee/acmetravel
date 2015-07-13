@@ -4,7 +4,7 @@ module Api
 
     	def self.flights(origin, destination) 
 
-				api_key = "AIzaSyAJFENeGfEGXLLfI2QlnoKj57znRrdD6qc"
+				api_key = Sabre.env.google_auth_key
 				url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=#{api_key}"
 
 
@@ -38,7 +38,7 @@ module Api
 
       def flights
       end
-
+ 
     end
   end
 end
