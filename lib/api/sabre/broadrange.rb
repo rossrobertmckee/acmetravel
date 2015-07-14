@@ -4,112 +4,113 @@ module Api
 
     	def self.flights(origin, destination)
 
-				auth = { "Authorization" => Figaro.env.sabre_auth_key }
+				auth = { "Authorization" => Figaro.env.sabre_auth_key, 'Content-Type' => 'application/json' }
 				url = "https://api.test.sabre.com/v1.8.1/shop/calendar/flights"
 
 
 				request = {
-    "OTA_AirLowFareSearchRQ": {
-        "OriginDestinationInformation": [
+    "OTA_AirLowFareSearchRQ" => {
+        "OriginDestinationInformation" => [
             {
-                "DepartureDates": {
-                    "dayOrDaysRange": [
+                "DepartureDates" => {
+                    "dayOrDaysRange" => [
                         {
-                            "DaysRange": {
-                                "FromDate": "2015-08-01",
-                                "ToDate": "2015-08-28"
+                            "DaysRange" => {
+                                "FromDate" => "2015-08-01",
+                                "ToDate" => "2015-08-28"
                             }
                         }
                     ]
                 },
-                "DestinationLocation": {
-                    "LocationCode": "LAX"
+                "DestinationLocation" => {
+                    "LocationCode" => "LAX"
                 },
-                "OriginLocation": {
-                    "LocationCode": "DFW"
+                "OriginLocation" => {
+                    "LocationCode" => "DFW"
                 },
-                "RPH": 1
+                "RPH" => 1
             },
             {
-                "DepartureDates": {
-                    "lengthOfStayOrLengthOfStayRange": [
+                "DepartureDates" => {
+                    "lengthOfStayOrLengthOfStayRange" => [
                         {
-                            "LengthOfStayRange": {
-                                "MaxDays": 1,
-                                "MinDays": 1
+                            "LengthOfStayRange" => {
+                                "MaxDays" => 1,
+                                "MinDays" => 1
                             }
                         }
                     ]
                 },
-                "DestinationLocation": {
-                    "LocationCode": "DFW"
+                "DestinationLocation" => {
+                    "LocationCode" => "DFW"
                 },
-                "OriginLocation": {
-                    "LocationCode": "LAX"
+                "OriginLocation" => {
+                    "LocationCode" => "LAX"
                 },
-                "RPH": 2
+                "RPH" => 2
             }
         ],
-        "POS": {
-            "Source": [
+        "POS" => {
+            "Source" => [
                 {
-                    "RequestorID": {
-                        "CompanyName": {
-                            "Code": "TN"
+                    "RequestorID" => {
+                        "CompanyName" => {
+                            "Code" => "TN"
                         },
-                        "ID": "REQ.ID",
-                        "Type": "0.AAA.X"
+                        "ID" => "REQ.ID",
+                        "Type" => "0.AAA.X"
                     }
                 }
             ]
         },
-        "TPA_Extensions": {
-            "IntelliSellTransaction": {
-                "RequestType": {
-                    "Name": "ADC1000"
+        "TPA_Extensions" => {
+            "IntelliSellTransaction" => {
+                "RequestType" => {
+                    "Name" => "ADC1000"
                 }
             }
         },
-        "TravelPreferences": {
-            "TPA_Extensions": {
-                "NumTrips": {
-                    "Number": 200
+        "TravelPreferences" => {
+            "TPA_Extensions" => {
+                "NumTrips" => {
+                    "Number" => 200
                 }
             }
         },
-        "TravelerInfoSummary": {
-            "AirTravelerAvail": [
+        "TravelerInfoSummary" => {
+            "AirTravelerAvail" => [
                 {
-                    "PassengerTypeQuantity": [
+                    "PassengerTypeQuantity" => [
                         {
-                            "Code": "ADT",
-                            "Quantity": 1
+                            "Code" => "ADT",
+                            "Quantity" => 1
                         }
                     ]
                 }
             ],
-            "PriceRequestInformation": {
-                "TPA_Extensions": {
-                    "Priority": {
-                        "DirectFlights": {
-                            "Priority": 2
+            "PriceRequestInformation" => {
+                "TPA_Extensions" => {
+                    "Priority" => {
+                        "DirectFlights" => {
+                            "Priority" => 2
                         },
-                        "Price": {
-                            "Priority": 1
+                        "Price" => {
+                            "Priority" => 1
                         },
-                        "Time": {
-                            "Priority": 3
+                        "Time" => {
+                            "Priority" => 3
                         },
-                        "Vendor": {
-                            "Priority": 4
+                        "Vendor" => {
+                            "Priority" => 4
                         }
                     }
                 }
             }
         }
     }
-}.to_json
-				response = HTTParty.post(url, body: request, headers: auth)
+}
+				jsonrequest = request.to_json
+				response = HTTParty.post(url, body: jsonrequest, headers: auth)
 				return response
     	end
 

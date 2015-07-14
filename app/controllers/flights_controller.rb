@@ -17,7 +17,7 @@ class FlightsController < ApplicationController
     	@results << JSON.parse(@response.body)
     	# @weather = Api::Weather::Weather.weather("Los+Angeles")
     	@response2 = Api::Sabre::Broadrange.flights(params[:origin], params[:destination])
-    	@results2 << JSON.parse(@response2.body)
+    	#@results2 << JSON.parse(@response2.body)
     #else
     	#@response = Api::Sabre::Earliestandlatest.flights(params[:search])
     	#@results << JSON.parse(@response.body)
