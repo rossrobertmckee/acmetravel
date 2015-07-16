@@ -4,7 +4,7 @@ module Api
 
     	def self.flights(origin, destination)
 
-				auth = { "Authorization" => Figaro.env.sabre_auth_key, 'Content-Type' => 'application/json' }
+				auth = { 'Authorization' => Figaro.env.sabre_auth_key, 'Content-Type' => 'application/json' }
 				url = "https://api.test.sabre.com/v1.8.1/shop/calendar/flights"
 
 
@@ -108,9 +108,10 @@ module Api
             }
         }
     }
-}
-				jsonrequest = request.to_json
-				response = HTTParty.post(url, body: jsonrequest, headers: auth)
+}.to_json
+
+
+				response = HTTParty.post(url, body: request, headers: auth)
 				return response
     	end
 

@@ -1,19 +1,35 @@
-<%= @response2 %>
 
-  <% @results.each do |test| %> 
-    <% test["FareInfo"].each do |dest| %>
+
+
+
+
+
+  <% @results.each do |json| %> 
+    <% json["FareInfo"].each do |dest| %>
       <div class="col-xs-offset-3">
         <div class="shadowbox col-xs-6 text-center">
       <% convert_iata = dest["DestinationLocation"] %>
         Get to <%= WorldAirports.iata("#{convert_iata}").city %> for
-        <b><%= (dest["LowestFare"]).to_i %> </b>bucks
-        </br>
+
+        <b><%= (dest["LowestFare"]).to_i %> </b><%= @money %>
+        <br />
         You'd Leave: <%= (dest["DepartureDateTime"].to_time).strftime("at %I:%M%p on %m/%d/%Y") %>
-        </br>
+        <br />
         And return: <%= (dest["ReturnDateTime"].to_time).strftime("at %I:%M%p on %m/%d/%Y")  %>
+        <br />
+
+        <% dest["Links"].each do |flight_link| %>
+
+          <% booking_link = flight_link["href"] %>
+
+            <%= link_to "Lets book it!", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-success' %>
+
+
         </div>
       </div>
 
+      
+      <% end %>
     <% end %>
   <% end %>
 

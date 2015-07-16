@@ -1,7 +1,6 @@
 class FlightsController < ApplicationController
 
 	def index
-
 	end
 	
 	def new
@@ -10,19 +9,23 @@ class FlightsController < ApplicationController
 
 	def search
 		@results = []
-
+		@results2 = []
 		
 		#if params[:search][:earliestdeparture].blank?
     	@response = Api::Sabre::Latest.flights(params[:search])
     	@results << JSON.parse(@response.body)
-    	# @weather = Api::Weather::Weather.weather("Los+Angeles")
-    	@response2 = Api::Sabre::Broadrange.flights(params[:origin], params[:destination])
-    	#@results2 << JSON.parse(@response2.body)
-    #else
-    	#@response = Api::Sabre::Earliestandlatest.flights(params[:search])
-    	#@results << JSON.parse(@response.body)
+    	#@weather = Api::Weather::Weather.weather
+    	#@temperature = JSON.parse(@weather)
+    	# @response2 = Api::Sabre::Broadrange.flights(params[:origin], params[:destination])
+    	# @json_hash_of_flight_data = JSON.parse(@response2)
     #end
+    	@random = ["Bucks", "Smackers", "Dolla Dolla Bills", "Dollars", "Benjamins" ]
+    	@money = @random.sample
   end
+
+  def show
+  end
+
 end
 
 # What needs to happen:  Build upon "Destination finder" by either using all the premade destinations and loping through, or

@@ -2,13 +2,17 @@ module Api
   module Weather
     class Weather
 
-    	 def self.weather(city) 
+    	 def self.weather
 
-    		auth = { "X-Mashape-Key" => "wBBIwgJX80mshFoc7H8NHrkbuCFHp1Nzt1djsnAg5UzAJxT1Kt", "Accept" => "application/json" }
-				url = "https://george-vustrey-weather.p.mashape.com/api.php?location=#{city}"
-				response = HTTParty.get(url, headers: auth)
-
+        response = HTTParty.get("https://community-open-weather-map.p.mashape.com/weather?callback=test&lang=-en&q=Los+Angeles%2C+CA&units=imperial",
+              headers:{
+                "X-Mashape-Key" => "wBBIwgJX80mshFoc7H8NHrkbuCFHp1Nzt1djsnAg5UzAJxT1Kt",
+                "Accept" => "application/json"
+                }
+              )
+              
 				return response
+
     	end
 
     end

@@ -1,4 +1,10 @@
 source 'https://rubygems.org'
+gem 'will_paginate'
+
+gem 'geokit'
+
+gem 'unirest'
+
 gem 'figaro'
 
 gem 'world_airports'

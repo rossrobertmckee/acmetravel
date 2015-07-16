@@ -25,7 +25,7 @@
         <%= number_field_tag "search[lengthofstay]", min: 1, max: 16 %>
         <br />
         <%= label_tag "Type of Destination" %>
-        <%= select_tag("search[theme]", options_for_select([['Beach', "beach"], ['Skiing', "skiing"]])) %>
+        <%= select_tag("search[theme]", options_for_select([['Beach', "beach"], ['Skiing', "skiing"], ['Tropical', "caribbean"], ['Nature Lover', "outdoors"], ['Gambling', "gambling"], ['Romantic', "romantic"], ['Surprise Me!', "shopping"], ['Rollercoasters!', "theme-park"]])) %>
         <br />
         <%= submit_tag "Search", :class => 'btn btn-primary' %>
     <% end %> 
@@ -80,3 +80,41 @@
 </form>
 </div>
  -->
+
+
+
+<!-- 
+ <div class="home_search_box">
+  <div class="col-xs-offset-2">
+    <div class="shadowbox col-xs-8">
+     Search Criteria
+    <%= form_tag search_flights_path do %>
+        <%= label_tag "origin" %>
+        <%= text_field_tag "search[origin]" %>
+        <br />
+        <%= label_tag "Max Price" %>
+        <%= text_field_tag "search[maxfare]" %>
+        <br />
+        <%= label_tag "Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[departuredate]" %>
+        <br />
+        <%= label_tag "Return (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[returndate]" %>
+        <br />
+        <%= label_tag "Earliest Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[earliestdeparturedate]" %>
+        <br />
+        <%= label_tag "Latest Departure (YYYY-MM-DD)" %>
+        <%= text_field_tag "search[latestdeparturedate]" %>
+        <br />
+        <%= label_tag "Length of stay" %>
+        <%= number_field_tag "search[lengthofstay]", min: 1, max: 16 %>
+        <br />
+        <%= label_tag "Type of Destination" %>
+        <%= select_tag("search[theme]", options_for_select([['Beach', "beach"], ['Skiing', "skiing"]])) %>
+        <br />
+        <%= submit_tag "Search", :class => 'btn btn-primary' %>
+    <% end %> 
+  </div>
+ </div> 
+</div> -->
