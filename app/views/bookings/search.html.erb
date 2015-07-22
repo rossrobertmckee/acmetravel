@@ -1,1 +1,12 @@
-<%= @linkitin %>
+<% @air_itineraries.each do |flight_segments| %> 
+
+			<p><b>Flight Segments</b></p>
+
+	<% flight_segments.each do |flight_segment| %>
+
+		<%= flight_segment["DepartureAirport"] %>
+
+		<%= flight_segment["ArrivalAirport"] %>
+		
+	<% end %>
+<% end %>

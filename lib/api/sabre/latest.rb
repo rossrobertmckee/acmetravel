@@ -8,7 +8,6 @@ module Api
     		puts query
 
     		auth = { "Authorization" => Figaro.env.sabre_auth_key }
-				#url = "https://api.test.sabre.com/v1/shop/flights/fares?origin=#{origin}&latestdeparturedate=2015-11-31&lengthofstay=#{lengthofstay}&maxfare=700&pointofsalecountry=US&topdestinations=50"
 				url = "https://api.test.sabre.com/v1/shop/flights/fares?#{query}&pointofsalecountry=US&topdestinations=50"
 
 				response = HTTParty.get(url, headers: auth)

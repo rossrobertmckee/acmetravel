@@ -6,12 +6,8 @@ Acmetravel::Application.routes.draw do
         post "search"
       end
     end
-
-    resources :bookings do
-      collection do
-        post "search"
-      end
-    end
+    
+    get 'bookings/search' => 'bookings#search', as: 'search_bookings'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
