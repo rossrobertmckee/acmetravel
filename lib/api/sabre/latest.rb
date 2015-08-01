@@ -26,3 +26,4 @@ module Api
 end
 
 #origin, latestdeparture, lengthofstay, maxprice
+#Figaro.env.sabre_auth_key

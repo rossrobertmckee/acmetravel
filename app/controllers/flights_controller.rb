@@ -28,8 +28,9 @@ class FlightsController < ApplicationController
 
 end
 
-# What needs to happen:  Build upon "Destination finder" by either using all the premade destinations and loping through, or
-# -- finding a way to do a multiple destination search with broad dates. 
+
+# OPtions in Latest API.  What does it mean?
+# Add each search result in to an array through a DO and output the array for pagination.
 # Multiple airport codes? Run each request?  Place in to array => each do?  This applies to the multiple destinations. 
 # Tripadvisor -- how would the airport code be pulled, ran through trip advisor API, and then spit out at results?
 # -- WOuld it be an additional step in the controller?

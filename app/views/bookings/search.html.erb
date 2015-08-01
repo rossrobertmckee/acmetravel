@@ -1,12 +1,16 @@
-<% @air_itineraries.each do |flight_segments| %> 
+<div class="bookingbox">
+	<% @air_itineraries.each do |entire_trip_data| %>
+		<% entire_trip_data.each do |data_split| %>
+			<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
 
-			<p><b>Flight Segments</b></p>
+				<p><h1>Flight Segments</h1></p>
 
-	<% flight_segments.each do |flight_segment| %>
-
-		<%= flight_segment["DepartureAirport"] %>
-
-		<%= flight_segment["ArrivalAirport"] %>
-		
+				<% legs.each do |leg| %>
+					<%= leg["FlightSegment"] %>
+					<% end %>
+				<%= data_split["AirItineraryPricingInfo"]["PTC_FareBreakdowns"]["PTC_FareBreakdown"]["PassengerFare"]["TotalFare"]["Amount"] %>
+				
+			<% end %>
+		<% end %>
 	<% end %>
-<% end %>
+</div>

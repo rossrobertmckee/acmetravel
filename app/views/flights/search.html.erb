@@ -1,9 +1,11 @@
+
 <div class="container-results">
 
   <% @results.each do |json| %> 
     <% json["FareInfo"].each do |dest| %>
-      <div class="col-sm-offset-2">
-        <div class="shadowbox col-sm-6 text-center">
+    
+      <div class="col-sm-offset-1">
+        <div class="shadowbox col-sm-5 text-center">
       <% convert_iata = dest["DestinationLocation"] %>
         <h2><%= WorldAirports.iata("#{convert_iata}").city %></h2> for
 
@@ -23,12 +25,13 @@
 
         </div>
       </div>
-
+    
       
       <% end %>
     <% end %>
   <% end %>
 </div>
+
 
 
 

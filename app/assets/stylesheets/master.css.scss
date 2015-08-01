@@ -38,7 +38,7 @@ html,body {
 }
 
 h1 {
-  font-family: Helvetica,sans-serif;
+  font-family: helvetica,sans-serif;
   font-size:80px;
   color:white;
 }
@@ -55,6 +55,7 @@ h1 {
   min-height:100%;
     background-image:url("bg.jpg");
     background-size: 100% 100%;
+    background-repeat: no-repeat;
   color:#eee;
   overflow:hidden;
 }
@@ -78,3 +79,7 @@ h1 {
   color:#eee;
   overflow:hidden;
   }
+
+.header {
+
+}
