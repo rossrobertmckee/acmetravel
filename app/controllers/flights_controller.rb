@@ -7,21 +7,21 @@ class FlightsController < ApplicationController
 		@flight = Flight.new
 	end
 
-	def search
-		@results = []
-		@results2 = []
-		
-		#if params[:search][:earliestdeparture].blank?
-    	@response = Api::Sabre::Latest.flights(params[:search])
-    	@results << JSON.parse(@response.body)
-    	#@weather = Api::Weather::Weather.weather
-    	#@temperature = JSON.parse(@weather)
-    	# @response2 = Api::Sabre::Broadrange.flights(params[:origin], params[:destination])
-    	# @json_hash_of_flight_data = JSON.parse(@response2)
-    #end
-    	@random = ["Bucks", "Smackers", "Dolla Dolla Bills", "Dollars", "Benjamins" ]
-    	@money = @random.sample
+  def search
+    response = Api::Sabre::Latest.flights(params[:search])
+    @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
+    @results = @flight_data.sort_by_lowest_fare
+    @money = ["Bucks", "Smackers", "Dolla Dolla Bills", "Dollars", "Benjamins" ].sample
   end
+
+	# def search
+	# 	@results = []
+	
+ #    	@response = Api::Sabre::Latest.flights(params[:search])
+ #    	@results << JSON.parse(@response.body)
+ #    	@random = ["Bucks", "Smackers", "Dolla Dolla Bills", "Dollars", "Benjamins" ]
+ #    	@money = @random.sample
+ #  end
 
   def show
   end
