@@ -1,8 +1,10 @@
 class Airport < ActiveRecord::Base
+	validates :code, uniqueness: true
 	attr_accessor :code, :lat, :lon, :name, :city, :state, :country, :woeid,
                 :tz, :phone, :email, :url, :runway_length, :elev, :icao,
                 :direct_flights, :carriers
-	def build_from_json(raw_data) 
+
+	def self.build_from_json(raw_data) 
 		self.code = raw_data["code"]
 		self.lat = raw_data["lat"]
 		self.lon = raw_data["lon"]
@@ -21,16 +23,15 @@ class Airport < ActiveRecord::Base
     self.direct_flights = raw_data["direct_flights"]
     self.carriers = raw_data["carriers"]
 	end
-
 	
 	def self.load_data
 		airport_data = JSON.parse(File.read('config/data/airport_data.json'))
 			airport_data.map do |breakdown_data|
-				Airport.new(breakdown_data)
+				self.build_from_json(breakdown_data)
 			end
 		end
 
-	validates :code, uniqueness: true
+	
 	# validates :lat, uniqueness: true
 	# validates :lon, uniqueness: true
 	validates :name, uniqueness: true
