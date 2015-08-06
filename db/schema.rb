@@ -11,10 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625212339) do
+ActiveRecord::Schema.define(version: 20150805173229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: true do |t|
+    t.string   "code"
+    t.float    "lat"
+    t.float    "lon"
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "woeid"
+    t.string   "tz"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "url"
+    t.integer  "runway_length"
+    t.integer  "elev"
+    t.string   "icao"
+    t.integer  "direct_flights"
+    t.integer  "carriers"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "airports", ["city"], name: "index_airports_on_city", using: :btree
+  add_index "airports", ["code", "lat", "lon"], name: "index_airports_on_code_and_lat_and_lon", using: :btree
+  add_index "airports", ["code", "name", "city"], name: "index_airports_on_code_and_name_and_city", using: :btree
+  add_index "airports", ["code", "woeid"], name: "index_airports_on_code_and_woeid", using: :btree
+  add_index "airports", ["code"], name: "index_airports_on_code", using: :btree
+  add_index "airports", ["name"], name: "index_airports_on_name", using: :btree
+  add_index "airports", ["woeid"], name: "index_airports_on_woeid", using: :btree
 
   create_table "flights", force: true do |t|
     t.integer  "adultcount"
