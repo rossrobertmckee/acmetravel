@@ -1,4 +1,5 @@
 class Airport < ActiveRecord::Base
+	belongs_to :Airports
 	validates :code, uniqueness: true
 
 	def self.build_from_json(raw_data) 

@@ -1,16 +1,26 @@
 <div class="bookingbox">
+	<p><h1>City Name</h1></p> 
 	<% @air_itineraries.each do |entire_trip_data| %>
 		<% entire_trip_data.each do |data_split| %>
 			<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
-
-				<p><h1>Flight Segments</h1></p>
-
-				<% legs.each do |leg| %>
-					<%= leg["FlightSegment"] %>
+				<hr>
+				<% legs.each do |departure| %>
+					<% departure["FlightSegment"].each do |depart| %>
+						<%= WorldAirports.iata(depart["DepartureAirport"]["LocationCode"]).name %>
+						
 					<% end %>
+				<% end %><br />
+					<% legs.each do |arrival| %> 
+					<% arrival["FlightSegment"].each do |arrive| %>
+						<%= WorldAirports.iata(arrive["ArrivalAirport"]["LocationCode"]).name %>
+					<% end %>
+				<% end %>
 				<%= data_split["AirItineraryPricingInfo"]["PTC_FareBreakdowns"]["PTC_FareBreakdown"]["PassengerFare"]["TotalFare"]["Amount"] %>
 				
 			<% end %>
 		<% end %>
 	<% end %>
 </div>
+
+
+[{"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"LAX"}, "ArrivalAirport"=>{"LocationCode"=>"SJC"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>79, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CR9"}, "DepartureDateTime"=>"2015-08-29T08:06:00", "ArrivalDateTime"=>"2015-08-29T09:25:00", "FlightNumber"=>5739, "OnTimePerformance"=>{"Level"=>8}, "OperatingAirline"=>{"CompanyShortName"=>"MESA AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>5739, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>79}, {"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"SJC"}, "ArrivalAirport"=>{"LocationCode"=>"LAX"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>85, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CRJ"}, "DepartureDateTime"=>"2015-09-02T07:00:00", "ArrivalDateTime"=>"2015-09-02T08:25:00", "FlightNumber"=>2901, "OnTimePerformance"=>{"Level"=>9}, "OperatingAirline"=>{"CompanyShortName"=>"SKYWEST AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>2901, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>85}] [{"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"LAX"}, "ArrivalAirport"=>{"LocationCode"=>"SJC"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>79, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CR9"}, "DepartureDateTime"=>"2015-08-29T08:06:00", "ArrivalDateTime"=>"2015-08-29T09:25:00", "FlightNumber"=>5739, "OnTimePerformance"=>{"Level"=>8}, "OperatingAirline"=>{"CompanyShortName"=>"MESA AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>5739, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>79}, {"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"SJC"}, "ArrivalAirport"=>{"LocationCode"=>"LAX"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>85, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CRJ"}, "DepartureDateTime"=>"2015-09-02T07:00:00", "ArrivalDateTime"=>"2015-09-02T08:25:00", "FlightNumber"=>2901, "OnTimePerformance"=>{"Level"=>9}, "OperatingAirline"=>{"CompanyShortName"=>"SKYWEST AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>2901, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>85}] 116.20 
