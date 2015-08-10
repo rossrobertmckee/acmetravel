@@ -1,9 +1,4 @@
-<script>
-  $(function () {
-    $('#origin').autocomplete({
-    });
-  });
-</script>
+
 
 <div class="container-full">
 <!-- 
@@ -37,9 +32,17 @@
           <div class="modal-body">
             <%= form_tag search_flights_path do %>
             <%= label_tag "origin" %>
+            <div class="container">
             <div id="origin">
             <%= autocomplete_field_tag "search[origin]", '', autocomplete_airport_name_airports_path, :update_elements => {} %>
             </div>
+            <script>
+  $(function () {
+    $('#origin').autocomplete({
+    });
+  });
+</script>
+</div>
             <br />
             <%= label_tag "Max Price" %>
             <%= text_field_tag "search[maxfare]" %>
@@ -180,7 +183,7 @@
 
 
   <!-- script references -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script src="js/bootstrap.min.js"></script>
     <!-- Moments.js minified CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
