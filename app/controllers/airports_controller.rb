@@ -1,5 +1,5 @@
 class AirportsController < ApplicationController
-	autocomplete :airport, :name
+	autocomplete :airport, :city, :display_value => :auto_complete
 
 def autocomplete
 end

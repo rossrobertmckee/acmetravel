@@ -33,6 +33,10 @@ class Airport < ActiveRecord::Base
 			end
 		end
 
+	def auto_complete
+    "#CODE - #{self.city}"
+  end
+
 	
 	# validates :lat, uniqueness: true
 	# validates :lon, uniqueness: true
