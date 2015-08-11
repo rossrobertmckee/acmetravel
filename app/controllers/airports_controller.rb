@@ -1,7 +1,4 @@
 class AirportsController < ApplicationController
-	autocomplete :airport, :city, :display_value => :auto_complete
-
-def autocomplete
-end
+	autocomplete :airport, :city, :extra_data => [:code], :display_value => :auto_complete
 
 end

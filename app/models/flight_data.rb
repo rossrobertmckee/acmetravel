@@ -16,5 +16,20 @@ class FlightData
   def sort_by_lowest_fare
   	fares.sort { |a, b| a.lowest_fare <=> b.lowest_fare }
   end
+
+  def group_by_airport
+    fare_group_by_airport = {}
+    sort_by_lowest_fare.each do |fare|
+      fare_array = fare_group_by_airport[fare.destination_location]
+      if fare_array.blank? 
+        fare_group_by_airport[fare.destination_location] = [fare]
+      else
+        fare_group_by_airport[fare.destination_location] << fare
+      end
+    end
+    return fare_group_by_airport
+  end
+
+
 end
 

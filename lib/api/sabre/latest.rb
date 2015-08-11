@@ -4,6 +4,7 @@ module Api
 
     	def self.flights(options) 
         # query_options = {pointofsalecountry: "US", topdestinations: "50"}
+        options[:origin] = options[:origin].split(' - ').first
     		query = options.map { |k, v| "#{k}=#{v}" unless v.blank? }.compact.join("&")
     		puts query
 

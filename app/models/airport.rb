@@ -34,7 +34,7 @@ class Airport < ActiveRecord::Base
 		end
 
 	def auto_complete
-    "#CODE - #{self.city}"
+    "#{self.code} - #{self.city}"
   end
 
 	

@@ -17,9 +17,10 @@
 
 
 //= require autocomplete-rails
-//= require bootstrap-sprockets
+
 //= require turbolinks
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery-ui
+//= require bootstrap-sprockets
