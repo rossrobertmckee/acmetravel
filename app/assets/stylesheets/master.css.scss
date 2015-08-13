@@ -1,3 +1,7 @@
+* {
+  border-radius: 0 !important;
+}
+
 ul.ui-autocomplete {
     z-index: 1100;
 }
@@ -33,12 +37,12 @@ ul.ui-autocomplete {
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
   -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
   box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background: #fff;
+  background: #fff,0.5;
   border: 1px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding:5px;
   margin:5px;
-  background-color:#D3D3D3;
+  background-color:rgba(241,241,241,0.5);
   color:black;
 }
 html,body {

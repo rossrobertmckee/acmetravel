@@ -1,12 +1,12 @@
-<div class="col-xs-offset-2">
-  <div class="cols-xs-8">
+<div class="col-xs-offset-1">
+  <div class="col-xs-10 text-center">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <% @results.each do |destination_location, fares| %>
         <% convert_iata = destination_location %>
           <% city_name = WorldAirports.iata("#{convert_iata}").city %>
             <% linked = "#" + convert_iata %>
       <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="balls"
+        <div class="panel-heading" role="tab" id="variable"
           <h2 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%= linked %> aria-expanded="false" aria-controls=<%= convert_iata %>>
               <h2><%= city_name %></h2>
@@ -14,7 +14,7 @@
           </h2>
         </div>
 
-        <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="balls">
+        <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="variable">
           <div class="panel-body">
               <% fares.each do |fare| %> 
                for
@@ -30,13 +30,8 @@
                 <div class="bton">
                   <%= link_to "Book it!", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-success' %>
                 </div>  
-            <!-- </div> -->
-          
             <% end %>
           <% end %>
-
-
-
           </div>
         </div>
       </div>
@@ -46,28 +41,6 @@
 </div>
 
 
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-
-</div>
-
-</div>
 
 
 
