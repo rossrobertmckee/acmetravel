@@ -33,11 +33,44 @@ class Airport < ActiveRecord::Base
 			end
 		end
 
+  def self.update_weather
+  	airports = Airport.all
+  	airports.map do |weather_update|
+  		lat = weather_update.lat
+  		lon = weather_update.lon
+  		response = Api::Weather::Weather.weather(lat, lon)
+			begin
+				parsed_response = JSON.parse(response.body)
+				results_parsed_to_temp_high = parsed_response["query"]["results"]["channel"]["item"]["forecast"][0]["high"]
+				results_parsed_to_temp_low = parsed_response["query"]["results"]["channel"]["item"]["forecast"][0]["low"]
+				high_temp_in_f = (results_parsed_to_temp_high.to_i * 2) + 30
+				low_temp_in_f = (results_parsed_to_temp_low.to_i * 2) + 30
+				weather_update.update(current_high_temp: "#{high_temp_in_f}")
+				weather_update.update(current_low_temp: "#{low_temp_in_f}")
+			rescue
+				weather_update.update(current_high_temp: "0")
+				weather_update.update(current_low_temp: "0")
+			end
+  	end
+  end
+
+  def self.update_airports
+  	airports = Airport.all
+  	airports.map do |remove_small_airports|
+			total_direct_flights = remove_small_airports.direct_flights
+			if total_direct_flights < 5
+				remove_small_airports.destroy
+			end
+		end
+	end
+
 	def auto_complete
     "#{self.code} - #{self.city}"
   end
 
-	
+end	
+
+
 	# validates :lat, uniqueness: true
 	# validates :lon, uniqueness: true
 	# validates :name, uniqueness: true
@@ -57,4 +90,3 @@ class Airport < ActiveRecord::Base
 	# validates :carriers, uniqueness: true
 
 
-end

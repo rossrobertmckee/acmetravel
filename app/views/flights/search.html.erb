@@ -1,43 +1,46 @@
-<div class="col-xs-offset-1">
-  <div class="col-xs-10 text-center">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <% @results.each do |destination_location, fares| %>
-        <% convert_iata = destination_location %>
-          <% city_name = WorldAirports.iata("#{convert_iata}").city %>
-            <% linked = "#" + convert_iata %>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="variable"
-          <h2 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%= linked %> aria-expanded="false" aria-controls=<%= convert_iata %>>
-              <h2><%= city_name %></h2>
-            </a>
-          </h2>
-        </div>
+<div class="container">
+  <div class="col-xs-offset-1">
+    <div class="col-xs-10 text-center">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <% @results.each do |destination_location, fares| %>
+          <% convert_iata = destination_location %>
+            <% city_name = WorldAirports.iata("#{convert_iata}").city %>
+              <% linked = "#" + convert_iata %>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="variable"
+            <h2 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%= linked %> aria-expanded="false" aria-controls=<%= convert_iata %>>
+                <h2><%= city_name %></h2>
+              </a>
+            </h2>
+          </div>
 
-        <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="variable">
-          <div class="panel-body">
+          <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="variable">
+            <div class="panel-body">
+              <% airport_data = Airport.find_by(code: "#{convert_iata}") %>
+                <%= airport_data.current_high_temp %>
               <% fares.each do |fare| %> 
-               for
-              <b><%= fare.lowest_fare.to_i %> </b><%= @money %>
-              <br />
-              You'd Leave: <%= (fare.departure_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y") %>
-              <br />
-              And return: <%= (fare.return_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y")  %>
-              <br />
-              <br />
-              <% fare.links.each do |flight_link| %>
-                <% booking_link = flight_link["href"] %>
-                <div class="bton">
-                  <%= link_to "Book it!", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-success' %>
-                </div>  
+                 for
+                <b><%= fare.lowest_fare.to_i %> </b><%= @money %>
+                <br />
+                You'd Leave: <%= (fare.departure_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y") %>
+                <br />
+                And return: <%= (fare.return_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y")  %>
+                <br />
+                <br />
+                <% fare.links.each do |flight_link| %>
+                  <% booking_link = flight_link["href"] %>
+                  <div class="bton">
+                    <%= link_to "Book it!", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-success' %>
+                  </div>  
+              <% end %>
             <% end %>
-          <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      <% end %> 
+        <% end %> 
+    </div>
   </div>
-</div>
 </div>
 
 

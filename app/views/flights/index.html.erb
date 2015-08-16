@@ -5,6 +5,7 @@
         }); 
       });
   </script>
+  
 
 
 
@@ -13,98 +14,104 @@
   <div class="header">
     <h2>acmeTRAVEL Engine</h2>
   </div> -->
-
-
-      <div class="row">
-       
-        <div class="col-xs-12 text-center v-center">
-          
-          <h1>Let's go somewhere...</h1>
-          <p class="lead">acmeTRAVEL finds your next getaway,<br />without entering a destination...</p>
-
-          
+  <div class="row">
+    <div class="col-xs-12 text-center v-center">
+      <h1>Let's go somewhere...</h1>
+      <p class="lead">acmeTRAVEL<sup>BETA</sup>&nbsp finds your next getaway,<br />without entering a destination...</p>
           <br /><br />
 <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
+  <div class="form-group col-xs-3">
+    <!-- <label for="origin">Leaving from?</label> -->
+    <input type="text" class="form-control" id='origin' placeholder="Origin (TBD - Timbuktu)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city" aria-describedby="origin-format" required aria-required=”true”  data-fv-stringlength-min="3" title="Select from dropdown list">
+  </div>
 
-                <div class="form-group col-xs-3">
-                  <!-- <label for="origin">Leaving from?</label> -->
-                  <input type="text" class="form-control" id='origin' placeholder="Origin (TBD - Timbuktu)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city" >
-                </div>
-                <div class="form-group col-sm-2">
-                  <!-- <label for="maxfare">The <u>most</u> you can spend:</label> -->
-                  <input type="number" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]">
-                </div>
-                  <div class='col-xs-3'>
-                      <div class="form-group">
-                        <!-- <label for="search[latestdeparturedate]">Date range:</label> -->
-                          <div class='input-group date' id='datetimepicker1'>
-                              <input type='text' class="form-control" name="search[earliestdeparturedate]" placeholder="Earliest you can leave" />
-                              <span class="input-group-addon">
-                                  <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
-                          </div>
-                      </div>
-                  </div> 
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker({
-                              format: 'YYYY-MM-DD'
-                            });
-                        });
-                    </script>
-                  <div class='col-sm-3'>
-                      <div class="form-group">
-                          <div class='input-group date' id='datetimepicker2'>
-                              <input type='text' class="form-control" name="search[latestdeparturedate]" placeholder="Latest you can leave" />
-                              <span class="input-group-addon">
-                                  <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
-                          </div>
-                      </div>
-                  </div> 
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker2').datetimepicker({
-                              format: 'YYYY-MM-DD'
-                            });
-                        });
-                    </script>
-                <div class="form-group col-sm-2">
-                  <!-- <label for="length_of_stay">How long can you stay for?</label> -->
-                   <select class="form-control" id="length_of_stay" name="search[lengthofstay]">
-                      <option value="1">Just a day</option>
-                      <option value="2">A couple days</option>
-                      <option value="3">Three Days</option>
-                      <option value="4">Four Days</option>
-                      <option value="5">Cinco Dias</option>
-                      <option value="6">Six Days</option>
-                      <option value="7">A solid week!</option>
-                      <option value="8">Eight Days</option>
-                      <option value="9">Nine Days</option>
-                      <option value="10">Ten Days</option>
-                      <option value="11">Eleven Days</option>
-                      <option value="12">Twelve Days</option>
-                      <option value="13">Thirteen Days</option>
-                      <option value="14">Two Weeks!</option>
-                      <option value="15">Fifteen Days</option>
-                      <option value="16">Sixteen Days</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-2">
-                  <!-- <label for="length_of_stay">What are you looking for?</label> -->
-                   <select class="form-control" id="length_of_stay" name="search[theme]">
-                      <option value="beach">Sand, waves, and sunshine.</option>
-                      <option value="skiing">Somewhere with skiing</option>
-                      <option value="caribbean">Somewhere tropical</option>
-                      <option value="outdoors">The great outdoors</option>
-                      <option value="gambling">Casinos, bars, and clubs</option>
-                      <option value="romantic">Somewhere romantic</option>
-                      <option value="shopping">Somewhere to shop</option>
-                      <option value="theme-park">A major theme park</option>
-                    </select>
-                </div>
-          <button type="submit" class="btn btn-success">Search</button>
-      </form>
+  <div class="form-group col-sm-2">
+    <!-- <label for="maxfare">The <u>most</u> you can spend:</label> -->
+    <!-- <span class="input-group-addon">$</span> -->
+    <input type="number" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]" required>
+  </div>
+
+    <div class='col-xs-3'>
+        <div class="form-group">
+          <!-- <label for="search[latestdeparturedate]">Date range:</label> -->
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" name="search[earliestdeparturedate]" placeholder="Earliest you can leave" required>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div> 
+      <script type="text/javascript">
+          $(function () {
+              $('#datetimepicker1').datetimepicker({
+                format: 'YYYY-MM-DD'
+              });
+          });
+      </script>
+    <div class='col-sm-3'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker2'>
+                <input type='text' class="form-control" name="search[latestdeparturedate]" placeholder="Latest you can leave" required>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div> 
+      <script type="text/javascript">
+          $(function () {
+              $('#datetimepicker2').datetimepicker({
+                format: 'YYYY-MM-DD'
+              });
+          });
+      </script>
+    <div class="form-group col-sm-2">
+      <!-- <label for="length_of_stay">How long can you stay for?</label> -->
+       <select class="form-control" id="length_of_stay" name="search[lengthofstay]">
+          <option value="" selected disabled>Length?</option>
+          <option value="1">Just a day</option>
+          <option value="2">A couple days</option>
+          <option value="3">Three Days</option>
+          <option value="4">Four Days</option>
+          <option value="5">Cinco Dias</option>
+          <option value="6">Six Days</option>
+          <option value="7">A solid week!</option>
+          <option value="8">Eight Days</option>
+          <option value="9">Nine Days</option>
+          <option value="10">Ten Days</option>
+          <option value="11">Eleven Days</option>
+          <option value="12">Twelve Days</option>
+          <option value="13">Thirteen Days</option>
+          <option value="14">Two Weeks!</option>
+          <option value="15">Fifteen Days</option>
+          <option value="16">Sixteen Days</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-3">
+      <!-- <label for="length_of_stay">What are you looking for?</label> -->
+       <select class="form-control" id="length_of_stay" name="search[theme]">
+          <option value="" selected disabled>Where to?!?</option>
+          <option value="beach">Sand, waves, and sunshine.</option>
+          <option value="skiing">Somewhere with skiing</option>
+          <option value="caribbean">Somewhere tropical</option>
+          <option value="outdoors">The great outdoors</option>
+          <option value="gambling">Casinos, bars, and clubs</option>
+          <option value="romantic">Somewhere romantic</option>
+          <option value="shopping">Somewhere to shop</option>
+          <option value="theme-park">A major theme park</option>
+        </select>
+    </div>
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+
+
+
+
+
+
+
+
     </div>
   </div>  
 </div> <!-- /row -->
@@ -162,7 +169,7 @@
 
   <!-- script references -->
 
-    <script src="js/bootstrap.min.js"></script>
+    <!-- script src="js/bootstrap.min.js">/script> -->
     <!-- Moments.js minified CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 

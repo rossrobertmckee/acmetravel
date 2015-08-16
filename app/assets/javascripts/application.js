@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-
+//= require bootstrap-sprockets
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
 
@@ -23,4 +23,3 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery-ui
-//= require bootstrap-sprockets
