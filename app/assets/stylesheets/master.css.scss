@@ -12,28 +12,6 @@ ul.ui-autocomplete {
   color: white;
 }
 
-.bton {
-    position: absolute;
-
-}
-
-.modal-dialog {
-    color:black;
-}
-
-.shadowbox {
-  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding:10px;
-  margin:5px;
-  color:black;
-
-}
-
 .bookingbox {
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
   -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -41,7 +19,7 @@ ul.ui-autocomplete {
   background: #fff,0.5;
   border: 1px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding:5px;
+  padding-top:5px;
   margin:5px;
   background-color:rgba(241,241,241,0.5);
   color:black;
@@ -69,13 +47,7 @@ h1 {
     background-image:url("bg.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-  color:#eee;
   overflow:hidden;
-}
-
-.container-full a {
-  color:#efefef;
-  text-decoration:none;
 }
 
 .v-center {
@@ -93,6 +65,3 @@ h1 {
   overflow:hidden;
   }
 
-.header {
-
-}

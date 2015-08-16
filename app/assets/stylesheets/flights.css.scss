@@ -1,3 +1,47 @@
 // Place all the styles related to the flights controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.price {
+	font-size:300%;
+	font: impact;
+	color:red;
+}
+
+.city-headline {
+	font-size:300%;
+}
+
+.glyphicon.glyphicon-list {
+	font-size:80%;
+	color:rgb(200,200,200);
+}
+
+.depart-return {
+	font-size:110%;
+}
+
+.shadowbox {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background:rgba(240,240,240,0.6);
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding-top:5px;
+  margin:20px;
+  color:black;
+}
+
+.pannel-group {
+	padding-top:10px;
+}
+
+.form-horizontal {
+	background:rgba(240,240,240,0.4);
+}
+
+.btn-search {
+	right: 2px;
+	bottom: 2px;
+}
