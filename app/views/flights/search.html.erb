@@ -24,15 +24,15 @@
                 <b>$<%= fare.lowest_fare.to_i %> </b>
               </div>
               <div class="depart-return col-xs-5">
-                You'd Leave: <%= (fare.departure_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y") %>
+                You'd Leave <%= (fare.departure_date_time.to_time).strftime("on %m/%d/%Y") %>
                 <br />
-                And return: <%= (fare.return_date_time.to_time).strftime("at %I:%M%p on %m/%d/%Y")  %>
+                And return <%= (fare.return_date_time.to_time).strftime("on %m/%d/%Y")  %>
               </div>
 
                 <% fare.links.each do |flight_link| %>
                   <% booking_link = flight_link["href"] %>
                   <div class="bton">
-                    <%= link_to "Book it!", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-primary' %>
+                    <%= link_to "Check Times", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-primary' %>
                   </div>
                 
                   <hr />  
@@ -50,6 +50,6 @@
 
 
 
-
-
+<!-- at %I:%M%p 
+at %I:%M%p  -->
 

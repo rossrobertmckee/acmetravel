@@ -1,20 +1,37 @@
-<div class="bookingbox">
-	<p><h1>City Name</h1></p> 
+<% @booking_flights.each do |breakdown| %>
+	<%= breakdown.departure_airport %>
+<% end %>
+
+
+
+<div class="bookingbox-booking">
 	<% @air_itineraries.each do |entire_trip_data| %>
 		<% entire_trip_data.each do |data_split| %>
 			<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
-				<hr>
 				<% legs.each do |departure| %>
-					<% departure["FlightSegment"].each do |depart| %>
-						<%= WorldAirports.iata(depart["DepartureAirport"]["LocationCode"]).name %>
+					<% @name_array << departure["FlightSegment"][0]["DepartureAirport"]["LocationCode"] %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<div class="arrival-destination text-center">
+	<p><b><%= WorldAirports.iata(@name_array[0]).city %> to <%= WorldAirports.iata(@name_array[1]).city %></b></p>
+</div><hr>
+
+
+		<% @air_itineraries.each do |entire_trip_data| %>
+			<% entire_trip_data.each do |data_split| %>
+				<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
+				<hr>
+					<% legs.each do |departure| %>
+
+						<% departure["FlightSegment"].each do |depart| %>
+
 						
+						<%= (depart["DepartureDateTime"].to_time).strftime("Depart at %I:%M%p on %m/%d/%Y")  %>
 					<% end %>
 				<% end %><br />
-					<% legs.each do |arrival| %> 
-					<% arrival["FlightSegment"].each do |arrive| %>
-						<%= WorldAirports.iata(arrive["ArrivalAirport"]["LocationCode"]).name %>
-					<% end %>
-				<% end %>
+
 				<%= data_split["AirItineraryPricingInfo"]["PTC_FareBreakdowns"]["PTC_FareBreakdown"]["PassengerFare"]["TotalFare"]["Amount"] %>
 				
 			<% end %>
@@ -23,4 +40,258 @@
 </div>
 
 
-[{"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"LAX"}, "ArrivalAirport"=>{"LocationCode"=>"SJC"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>79, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CR9"}, "DepartureDateTime"=>"2015-08-29T08:06:00", "ArrivalDateTime"=>"2015-08-29T09:25:00", "FlightNumber"=>5739, "OnTimePerformance"=>{"Level"=>8}, "OperatingAirline"=>{"CompanyShortName"=>"MESA AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>5739, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>79}, {"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"SJC"}, "ArrivalAirport"=>{"LocationCode"=>"LAX"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>85, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CRJ"}, "DepartureDateTime"=>"2015-09-02T07:00:00", "ArrivalDateTime"=>"2015-09-02T08:25:00", "FlightNumber"=>2901, "OnTimePerformance"=>{"Level"=>9}, "OperatingAirline"=>{"CompanyShortName"=>"SKYWEST AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>2901, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>85}] [{"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"LAX"}, "ArrivalAirport"=>{"LocationCode"=>"SJC"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>79, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CR9"}, "DepartureDateTime"=>"2015-08-29T08:06:00", "ArrivalDateTime"=>"2015-08-29T09:25:00", "FlightNumber"=>5739, "OnTimePerformance"=>{"Level"=>8}, "OperatingAirline"=>{"CompanyShortName"=>"MESA AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>5739, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>79}, {"FlightSegment"=>[{"DepartureAirport"=>{"LocationCode"=>"SJC"}, "ArrivalAirport"=>{"LocationCode"=>"LAX"}, "MarketingAirline"=>{"Code"=>"US"}, "ArrivalTimeZone"=>{"GMTOffset"=>-7}, "TPA_Extensions"=>{"eTicket"=>{"Ind"=>true}}, "StopQuantity"=>0, "ElapsedTime"=>85, "ResBookDesigCode"=>"O", "MarriageGrp"=>"O", "Equipment"=>{"AirEquipType"=>"CRJ"}, "DepartureDateTime"=>"2015-09-02T07:00:00", "ArrivalDateTime"=>"2015-09-02T08:25:00", "FlightNumber"=>2901, "OnTimePerformance"=>{"Level"=>9}, "OperatingAirline"=>{"CompanyShortName"=>"SKYWEST AIRLINES AS AMERICAN EAGLE", "FlightNumber"=>2901, "Code"=>"AA"}, "DepartureTimeZone"=>{"GMTOffset"=>-7}}], "ElapsedTime"=>85}] 116.20 
+[
+    [
+        {
+            "AirItinerary"=>{
+                "OriginDestinationOptions"=>{
+                    "OriginDestinationOption"=>[
+                        {
+                            "FlightSegment"=>[
+                                {
+                                    "DepartureAirport"=>{
+                                        "LocationCode"=>"JFK"
+                                    },
+                                    "ArrivalAirport"=>{
+                                        "LocationCode"=>"BOS"
+                                    },
+                                    "MarketingAirline"=>{
+                                        "Code"=>"B6"
+                                    },
+                                    "ArrivalTimeZone"=>{
+                                        "GMTOffset"=>-4
+                                    },
+                                    "TPA_Extensions"=>{
+                                        "eTicket"=>{
+                                            "Ind"=>true
+                                        }
+                                    },
+                                    "StopQuantity"=>0,
+                                    "ElapsedTime"=>66,
+                                    "ResBookDesigCode"=>"O",
+                                    "MarriageGrp"=>"O",
+                                    "Equipment"=>{
+                                        "AirEquipType"=>320
+                                    },
+                                    "DepartureDateTime"=>"2015-08-26T06:13:00",
+                                    "ArrivalDateTime"=>"2015-08-26T07:19:00",
+                                    "FlightNumber"=>318,
+                                    "OnTimePerformance"=>{
+                                        "Level"=>8
+                                    },
+                                    "OperatingAirline"=>{
+                                        "FlightNumber"=>318,
+                                        "Code"=>"B6"
+                                    },
+                                    "DepartureTimeZone"=>{
+                                        "GMTOffset"=>-4
+                                    }
+                                }
+                            ],
+                            "ElapsedTime"=>66
+                        },
+                        {
+                            "FlightSegment"=>[
+                                {
+                                    "DepartureAirport"=>{
+                                        "LocationCode"=>"BOS"
+                                    },
+                                    "ArrivalAirport"=>{
+                                        "LocationCode"=>"JFK"
+                                    },
+                                    "MarketingAirline"=>{
+                                        "Code"=>"B6"
+                                    },
+                                    "ArrivalTimeZone"=>{
+                                        "GMTOffset"=>-4
+                                    },
+                                    "TPA_Extensions"=>{
+                                        "eTicket"=>{
+                                            "Ind"=>true
+                                        }
+                                    },
+                                    "StopQuantity"=>0,
+                                    "ElapsedTime"=>85,
+                                    "ResBookDesigCode"=>"O",
+                                    "MarriageGrp"=>"O",
+                                    "Equipment"=>{
+                                        "AirEquipType"=>"E90"
+                                    },
+                                    "DepartureDateTime"=>"2015-08-27T19:35:00",
+                                    "ArrivalDateTime"=>"2015-08-27T21:00:00",
+                                    "FlightNumber"=>317,
+                                    "OnTimePerformance"=>{
+                                        "Level"=>4
+                                    },
+                                    "OperatingAirline"=>{
+                                        "FlightNumber"=>317,
+                                        "Code"=>"B6"
+                                    },
+                                    "DepartureTimeZone"=>{
+                                        "GMTOffset"=>-4
+                                    }
+                                }
+                            ],
+                            "ElapsedTime"=>85
+                        }
+                    ]
+                },
+                "DirectionInd"=>"Return"
+            },
+            "TPA_Extensions"=>{
+                "ValidatingCarrier"=>{
+                    "Code"=>"B6"
+                }
+            },
+            "SequenceNumber"=>2,
+            "AirItineraryPricingInfo"=>{
+                "PTC_FareBreakdowns"=>{
+                    "PTC_FareBreakdown"=>{
+                        "FareBasisCodes"=>{
+                            "FareBasisCode"=>[
+                                {
+                                    "BookingCode"=>"O",
+                                    "DepartureAirportCode"=>"JFK",
+                                    "AvailabilityBreak"=>true,
+                                    "ArrivalAirportCode"=>"BOS",
+                                    "content"=>"OI7ABEN"
+                                },
+                                {
+                                    "BookingCode"=>"O",
+                                    "DepartureAirportCode"=>"BOS",
+                                    "AvailabilityBreak"=>true,
+                                    "ArrivalAirportCode"=>"JFK",
+                                    "content"=>"OI7ABEN"
+                                }
+                            ]
+                        },
+                        "PassengerTypeQuantity"=>{
+                            "Quantity"=>1,
+                            "Code"=>"ADT"
+                        },
+                        "PassengerFare"=>{
+                            "FareConstruction"=>{
+                                "CurrencyCode"=>"USD",
+                                "DecimalPlaces"=>2,
+                                "Amount"=>"240.00"
+                            },
+                            "TotalFare"=>{
+                                "CurrencyCode"=>"USD",
+                                "Amount"=>"286.20"
+                            },
+                            "Taxes"=>{
+                                "TotalTax"=>{
+                                    "CurrencyCode"=>"USD",
+                                    "DecimalPlaces"=>2,
+                                    "Amount"=>"46.20"
+                                },
+                                "Tax"=>[
+                                    {
+                                        "CurrencyCode"=>"USD",
+                                        "DecimalPlaces"=>2,
+                                        "TaxCode"=>"US1",
+                                        "Amount"=>"18.00"
+                                    },
+                                    {
+                                        "CurrencyCode"=>"USD",
+                                        "DecimalPlaces"=>2,
+                                        "TaxCode"=>"ZP",
+                                        "Amount"=>"8.00"
+                                    },
+                                    {
+                                        "CurrencyCode"=>"USD",
+                                        "DecimalPlaces"=>2,
+                                        "TaxCode"=>"AY",
+                                        "Amount"=>"11.20"
+                                    },
+                                    {
+                                        "CurrencyCode"=>"USD",
+                                        "DecimalPlaces"=>2,
+                                        "TaxCode"=>"XF",
+                                        "Amount"=>"9.00"
+                                    }
+                                ]
+                            },
+                            "BaseFare"=>{
+                                "CurrencyCode"=>"USD",
+                                "Amount"=>"240.00"
+                            },
+                            "EquivFare"=>{
+                                "CurrencyCode"=>"USD",
+                                "DecimalPlaces"=>2,
+                                "Amount"=>"240.00"
+                            }
+                        }
+                    }
+                },
+                "FareInfos"=>{
+                    "FareInfo"=>[
+                        {
+                            "TPA_Extensions"=>{
+                                "Cabin"=>{
+                                    "Cabin"=>"Y"
+                                },
+                                "SeatsRemaining"=>{
+                                    "BelowMin"=>false,
+                                    "Number"=>7
+                                }
+                            },
+                            "FareReference"=>"O"
+                        },
+                        {
+                            "TPA_Extensions"=>{
+                                "Cabin"=>{
+                                    "Cabin"=>"Y"
+                                },
+                                "SeatsRemaining"=>{
+                                    "BelowMin"=>false,
+                                    "Number"=>7
+                                }
+                            },
+                            "FareReference"=>"O"
+                        }
+                    ]
+                },
+                "TPA_Extensions"=>{
+                    "DivideInParty"=>{
+                        "Indicator"=>false
+                    }
+                },
+                "ItinTotalFare"=>{
+                    "FareConstruction"=>{
+                        "CurrencyCode"=>"USD",
+                        "DecimalPlaces"=>2,
+                        "Amount"=>"240.00"
+                    },
+                    "TotalFare"=>{
+                        "CurrencyCode"=>"USD",
+                        "DecimalPlaces"=>2,
+                        "Amount"=>"286.20"
+                    },
+                    "Taxes"=>{
+                        "Tax"=>[
+                            {
+                                "CurrencyCode"=>"USD",
+                                "DecimalPlaces"=>2,
+                                "TaxCode"=>"TOTALTAX",
+                                "Amount"=>"46.20"
+                            }
+                        ]
+                    },
+                    "BaseFare"=>{
+                        "CurrencyCode"=>"USD",
+                        "DecimalPlaces"=>2,
+                        "Amount"=>"240.00"
+                    },
+                    "EquivFare"=>{
+                        "CurrencyCode"=>"USD",
+                        "DecimalPlaces"=>2,
+                        "Amount"=>"240.00"
+                    }
+                }
+            },
+            "TicketingInfo"=>{
+                "TicketType"=>"eTicket"
+            }
+        },
+       
