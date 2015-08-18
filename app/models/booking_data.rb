@@ -5,7 +5,7 @@ class BookingData
 
   def bookings
   	@bookings ||= @raw_data.map do |booking_json|
-  		Booking.new(fare_json)
+  		Booking.new(booking_json)
   	end
   end
 end

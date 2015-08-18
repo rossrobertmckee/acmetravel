@@ -1,6 +1,7 @@
 class Airport < ActiveRecord::Base
 	belongs_to :Airports
 	validates :code, uniqueness: true
+	scope :greater_than_72, -> {where("current_high_temp >?", 72)}
 
 	def self.build_from_json(raw_data) 
 		a = Airport.new

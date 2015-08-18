@@ -1,5 +1,5 @@
-<% @booking_flights.each do |breakdown| %>
-	<%= breakdown.departure_airport %>
+<% @booking_flights.bookings.each do |breakdown| %>
+	<%= breakdown.total_fare %>
 <% end %>
 
 
