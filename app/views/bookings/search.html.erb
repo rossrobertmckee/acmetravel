@@ -1,43 +1,8 @@
-<% @booking_flights.bookings.each do |breakdown| %>
-	<%= breakdown.total_fare %>
-<% end %>
+<%= @booking_flights.booking_cost.inspect %>
 
 
 
-<div class="bookingbox-booking">
-	<% @air_itineraries.each do |entire_trip_data| %>
-		<% entire_trip_data.each do |data_split| %>
-			<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
-				<% legs.each do |departure| %>
-					<% @name_array << departure["FlightSegment"][0]["DepartureAirport"]["LocationCode"] %>
-				<% end %>
-			<% end %>
-		<% end %>
-	<% end %>
-<div class="arrival-destination text-center">
-	<p><b><%= WorldAirports.iata(@name_array[0]).city %> to <%= WorldAirports.iata(@name_array[1]).city %></b></p>
-</div><hr>
 
-
-		<% @air_itineraries.each do |entire_trip_data| %>
-			<% entire_trip_data.each do |data_split| %>
-				<% data_split["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| %>
-				<hr>
-					<% legs.each do |departure| %>
-
-						<% departure["FlightSegment"].each do |depart| %>
-
-						
-						<%= (depart["DepartureDateTime"].to_time).strftime("Depart at %I:%M%p on %m/%d/%Y")  %>
-					<% end %>
-				<% end %><br />
-
-				<%= data_split["AirItineraryPricingInfo"]["PTC_FareBreakdowns"]["PTC_FareBreakdown"]["PassengerFare"]["TotalFare"]["Amount"] %>
-				
-			<% end %>
-		<% end %>
-	<% end %>
-</div>
 
 
 [

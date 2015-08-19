@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
 
 	def search
 			@booking_link = Api::Sabre::Booking.flights(params[:link])
-			@booking_flights = BookingData.new(JSON.parse(@booking_link.body)["PricedItineraries"])
+			@booking_flights = BookingData.new(JSON.parse(@booking_link.body))
   end
 end
 

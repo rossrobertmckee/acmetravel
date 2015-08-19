@@ -9,10 +9,6 @@ class FlightData
   	end
   end
 
-  # def lowestfare
-  # 	fares.min { |a, b| a.lowest_fare <=> b.lowest_fare }
-  # end
-
   def sort_by_lowest_fare
   	fares.sort { |a, b| a.lowest_fare <=> b.lowest_fare }
   end
@@ -46,13 +42,9 @@ class FlightData
     end
     return fare_group_by_airport
   end
-
-
 end
 
 
-    # sort_by_lowest_fare.each do |bring_the_heat|
-    #   code = bring_the_heat.destination_location 
-    #   if 
-    #     airport_info = Airport.where(code: "#{code}")
-    #     current_airport_temp = airport_info.current_high_temp
+  # def lowestfare
+  #   fares.min { |a, b| a.lowest_fare <=> b.lowest_fare }
+  # end
