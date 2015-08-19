@@ -23,3 +23,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery-ui
+
+// Form Validation lib
+//= require dist/js/formValidation.min.js
+//= require dist/js/framework/bootstrap.min.js
