@@ -5,6 +5,69 @@
         }); 
       });
   </script>
+
+  <script>
+$(document).ready(function() {
+    $('#signinForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            "search[origin]": {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+            "search[maxfare]": {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your max cost.'
+                    },
+                    numeric: {
+                        message: 'The cost must be a number'
+                    }
+                }
+            },
+            "search[earliestdeparturedate]": {
+                validators: {
+                    notEmpty: {
+                        message: 'Earliest departure date required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        message: 'The date is not valid (YYYY-MM-DD)'
+                    }
+                }
+            },
+            "search[latestdeparturedate]": {
+                validators: {
+                    notEmpty: {
+                        message: 'Latest departure date required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        message: 'The date is not valid (YYYY-MM-DD)'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
   
 
 
@@ -22,13 +85,13 @@
 <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
   <div class="form-group col-xs-3">
     <!-- <label for="origin">Leaving from?</label> -->
-    <input type="text" class="form-control" id='origin' placeholder="Origin (TBD - Timbuktu)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city" aria-describedby="origin-format" required aria-required=”true”  data-fv-stringlength-min="3" title="Select from dropdown list">
+    <input type="text" class="form-control" id='origin' placeholder="Origin (TBD - Timbuktu)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city">
   </div>
 
   <div class="form-group col-sm-2">
     <!-- <label for="maxfare">The <u>most</u> you can spend:</label> -->
     <!-- <span class="input-group-addon">$</span> -->
-    <input type="number" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]" required>
+    <input type="text" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]" required>
   </div>
 
     <div class='col-xs-3'>
