@@ -12,6 +12,9 @@
  *= require_tree .
  *= require jquery-ui
  *= require jquery-ui/autocomplete
+
+ * Form Validation Lib
+ *= dist/css/formValidation.min.css
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
