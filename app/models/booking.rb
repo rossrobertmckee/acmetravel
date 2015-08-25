@@ -16,4 +16,3 @@ class Booking
 	# end
 
 end
-["PricedItineraries"]  <--- This needs to be added

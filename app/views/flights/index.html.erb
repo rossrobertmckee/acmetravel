@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.date.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.time.css">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.date.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.time.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/legacy.js"></script>
+
   <script>
       $(function () {
         $('#origin').autocomplete({
@@ -5,6 +14,48 @@
         }); 
       });
   </script>
+
+<script>
+$(document).ready(function() {
+    $('#departureDate').pickadate({
+        format: 'mm/dd/yyyy',
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true
+    });
+
+    $('#departureDate')
+        .pickadate('picker')
+        .on('render', function() {
+            // http://amsul.ca/pickadate.js/api.htm#events-callbacks
+            // Revalidate the date of birth field
+            $('#pickDateForm').formValidation('revalidateField', 'departureDate');
+        });
+});
+</script>  
+
+<script>
+$(document).ready(function() {
+    $('#latestDate').pickadate({
+        format: 'mm/dd/yyyy',
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true
+    });
+
+    $('#latestDate')
+        .pickadate('picker')
+        .on('render', function() {
+            // http://amsul.ca/pickadate.js/api.htm#events-callbacks
+            // Revalidate the date of birth field
+            $('#pickDateForm').formValidation('revalidateField', 'latestDate');
+        });
+});
+</script> 
+
+
+
+
+
+
 
   <script>
 $(document).ready(function() {
@@ -48,7 +99,7 @@ $(document).ready(function() {
                         message: 'Earliest departure date required'
                     },
                     date: {
-                        format: 'YYYY-MM-DD',
+                        format: 'MM/DD/YYYY',
                         message: 'The date is not valid (YYYY-MM-DD)'
                     }
                 }
@@ -93,42 +144,18 @@ $(document).ready(function() {
     <!-- <span class="input-group-addon">$</span> -->
     <input type="text" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]" required>
   </div>
+  <div class='col-sm-3'>      
+    <div class="form-group">
+          <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
+    </div>
+  </div> 
 
-    <div class='col-xs-3'>
-        <div class="form-group">
-          <!-- <label for="search[latestdeparturedate]">Date range:</label> -->
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" name="search[earliestdeparturedate]" placeholder="Earliest you can leave" required>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div> 
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker1').datetimepicker({
-                format: 'YYYY-MM-DD'
-              });
-          });
-      </script>
-    <div class='col-sm-3'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker2'>
-                <input type='text' class="form-control" name="search[latestdeparturedate]" placeholder="Latest you can leave" required>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div> 
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker2').datetimepicker({
-                format: 'YYYY-MM-DD'
-              });
-          });
-      </script>
+  <div class='col-sm-3'>      
+    <div class="form-group">
+          <input type="text" class="form-control" name="search[latestdeparturedate]" placeholder= "Latest departure" id="latestDate" />
+    </div>
+  </div> 
+
       <br />
     <div class="form-group col-sm-3">
       <!-- <label for="length_of_stay">How long can you stay for?</label> -->

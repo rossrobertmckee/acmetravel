@@ -4,17 +4,21 @@
   end
 
 
-  def self.booking_segment
-  	@booking_segment ||= @raw_data["PricedItineraries"].map do |booking_segment_json|
-  		BookingSegment.new(booking_segment_json)
+  def booking_segment
+  	@booking_segment ||= @raw_data.map do |booking_segment_json|
+  		Booking.new(booking_segment_json["AirItinerary"]["OriginDestinationOptions"]["OriginDestinationOption"])
+  	end
+  end
+
+  def breakdown_to_segment
+    @raw_data.each do |breakdown_to_segment|
+     breakdown_to_segment["AirItinerary"]["OriginDestinationOptions"]["OriginDestinationOption"]
+  end
+
+
+  def booking_cost
+  	@booking_cost ||= @raw_data.map do |total_fare_json|
+  		BookingCost.new(total_fare_json)
   	end
   end
 end
-
-
-
-  # def fare
-  # 	@bookings ||= @raw_data.map do |fare_json|
-  # 		Booking.new(fare_json)
-  # 	end
-  # end
