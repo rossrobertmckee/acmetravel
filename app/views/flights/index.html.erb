@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.date.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.time.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.date.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/themes/default.time.css">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.date.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.time.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/legacy.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.date.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/picker.time.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/legacy.js"></script>
 
   <script>
       $(function () {
@@ -61,6 +61,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#signinForm').formValidation({
         framework: 'bootstrap',
+        live: 'disabled',
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -70,17 +71,13 @@ $(document).ready(function() {
             "search[origin]": {
                 validators: {
                     notEmpty: {
-                        message: 'The username is required'
+                        message: 'The origin is required'
                     },
                     stringLength: {
                         min: 3,
                         max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
+                        message: 'The origin must be more than 3 and less than 30 characters long'
                     },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'The username can only consist of alphabetical, number and underscore'
-                    }
                 }
             },
             "search[maxfare]": {
@@ -124,6 +121,16 @@ $(document).ready(function() {
 
 
 <div class="container-full">
+
+<% if alert.present? %>
+<p class="alert alert-danger"><%= alert %></p>
+<% end %> 
+
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+
+
 <!-- 
   <div class="header">
     <h2>acmeTRAVEL Engine</h2>
@@ -159,7 +166,7 @@ $(document).ready(function() {
       <br />
     <div class="form-group col-sm-3">
       <!-- <label for="length_of_stay">How long can you stay for?</label> -->
-       <select class="form-control" id="length_of_stay" name="search[lengthofstay]">
+       <select class="form-control" id="length_of_stay" name="search[lengthofstay]" required>
           <option value="" selected disabled>Length?</option>
           <option value="1">Just a day</option>
           <option value="2">A couple days</option>
@@ -181,7 +188,7 @@ $(document).ready(function() {
     </div>
     <div class="form-group col-sm-3">
       <!-- <label for="length_of_stay">What are you looking for?</label> -->
-       <select class="form-control" id="length_of_stay" name="search[theme]">
+       <select class="form-control" id="length_of_stay" name="search[theme]" required>
           <option value="" selected disabled>Where to?!?</option>
           <option value="beach">Sand, waves, and sunshine.</option>
           <option value="skiing">Somewhere with skiing</option>

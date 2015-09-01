@@ -1,6 +1,7 @@
 class FlightsController < ApplicationController
 
 	def index
+    flash.keep
 	end
 	
 	def new
@@ -8,13 +9,20 @@ class FlightsController < ApplicationController
 	end
 
   def search
+    flash.keep
     response = Api::Sabre::Latest.flights(params[:search])
-    @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
+    if response["status"] == "NotProcessed"
+      redirect_to root_path, :flash => { :error => "Insufficient rights!" }
+    elsif response["status"] == "Complete"
+      redirect_to root_path, :flash => { :error => "Insufficient rights!" }
+    else
+      @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
     if params[:temperature_limit] == "bring_the_heat"
       @results = @flight_data.group_by_airport_after_temp_remove
     else
       @results = @flight_data.group_by_airport
     end
+  end
   end
 
   def show

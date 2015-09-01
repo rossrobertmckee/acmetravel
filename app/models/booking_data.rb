@@ -13,6 +13,7 @@
   def breakdown_to_segment
     @raw_data.each do |breakdown_to_segment|
      breakdown_to_segment["AirItinerary"]["OriginDestinationOptions"]["OriginDestinationOption"]
+   end
   end
 
 
@@ -21,4 +22,5 @@
   		BookingCost.new(total_fare_json)
   	end
   end
+
 end

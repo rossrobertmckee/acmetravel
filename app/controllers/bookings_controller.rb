@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
   end
 end
 
-
+# test_link_data = JSON.parse(File.read('config/data/test_link_data.json'))
 
 
 
