@@ -110,15 +110,8 @@ $(document).ready(function() {
     });
 });
 </script>
-  <%= puts flash.inspect %>
-  
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
 
-  <% if alert.present? %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %> 
+
 
 <div class="container-full">
 
@@ -201,6 +194,10 @@ $(document).ready(function() {
     <div class="btn-search">
       <button type="submit" class="btn btn-success">Search</button>
     </div>
+      <% flash.each do |key, value| %>
+        <br /><br />
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
 </form>
 
 

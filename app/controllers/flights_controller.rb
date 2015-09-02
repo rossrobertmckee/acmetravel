@@ -10,10 +10,10 @@ class FlightsController < ApplicationController
   def search
     response = Api::Sabre::Latest.flights(params[:search])
     if response["status"] == "NotProcessed"
-      flash[:error] =  "It worked 1"
+      flash[:warning] =  "It worked 1"
       redirect_to root_path
     elsif response["status"] == "Complete"
-      flash[:error] =  "It worked 2"
+      flash[:warning] =  "It worked 2"
       redirect_to root_path
     else
       @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
