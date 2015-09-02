@@ -20,14 +20,15 @@ $(document).ready(function() {
     $('#departureDate').pickadate({
         format: 'mm/dd/yyyy',
         formatSubmit: 'yyyy-mm-dd',
-        hiddenName: true
+        min: true,
+        max: 89,
+        hiddenName: true,
+
     });
 
     $('#departureDate')
         .pickadate('picker')
         .on('render', function() {
-            // http://amsul.ca/pickadate.js/api.htm#events-callbacks
-            // Revalidate the date of birth field
             $('#pickDateForm').formValidation('revalidateField', 'departureDate');
         });
 });
@@ -38,14 +39,14 @@ $(document).ready(function() {
     $('#latestDate').pickadate({
         format: 'mm/dd/yyyy',
         formatSubmit: 'yyyy-mm-dd',
-        hiddenName: true
+        min: true,
+        max: 89,
+        hiddenName: true,
     });
 
     $('#latestDate')
         .pickadate('picker')
         .on('render', function() {
-            // http://amsul.ca/pickadate.js/api.htm#events-callbacks
-            // Revalidate the date of birth field
             $('#pickDateForm').formValidation('revalidateField', 'latestDate');
         });
 });
@@ -129,14 +130,18 @@ $(document).ready(function() {
 <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
   <div class="form-group col-xs-3">
     <!-- <label for="origin">Leaving from?</label> -->
-    <input type="text" class="form-control" id='origin' placeholder="Origin (TBD - Timbuktu)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city">
+    <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city">
   </div>
 
-  <div class="form-group col-sm-2">
-    <!-- <label for="maxfare">The <u>most</u> you can spend:</label> -->
-    <!-- <span class="input-group-addon">$</span> -->
-    <input type="text" class="form-control" id="maxfare" placeholder="Max Price (e.g. 450)" name="search[maxfare]" required>
+  <div class="form-group col-sm-3">
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+        <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
+        <div class="input-group-addon">.00</div>
+    </div>
   </div>
+
+
   <div class='col-sm-3'>      
     <div class="form-group">
           <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
