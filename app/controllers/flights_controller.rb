@@ -1,7 +1,6 @@
 class FlightsController < ApplicationController
 
 	def index
-    flash.keep
 	end
 	
 	def new
@@ -9,14 +8,13 @@ class FlightsController < ApplicationController
 	end
 
   def search
-    flash.keep
     response = Api::Sabre::Latest.flights(params[:search])
     if response["status"] == "NotProcessed"
-      flash[:notice] =  "It worked 1"
-      redirect_to root_path, notice: "Does this work?"
+      flash[:error] =  "It worked 1"
+      redirect_to root_path
     elsif response["status"] == "Complete"
-      flash[:notice] =  "It worked 2"
-      redirect_to root_path, notice: "Does this work?"
+      flash[:error] =  "It worked 2"
+      redirect_to root_path
     else
       @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
     if params[:temperature_limit] == "bring_the_heat"
