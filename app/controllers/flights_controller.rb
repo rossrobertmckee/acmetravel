@@ -12,9 +12,11 @@ class FlightsController < ApplicationController
     flash.keep
     response = Api::Sabre::Latest.flights(params[:search])
     if response["status"] == "NotProcessed"
-      redirect_to root_path, :flash => { :error => "Insufficient rights!" }
+      flash[:notice] =  "It worked 1"
+      redirect_to root_path, notice: "Does this work?"
     elsif response["status"] == "Complete"
-      redirect_to root_path, :flash => { :error => "Insufficient rights!" }
+      flash[:notice] =  "It worked 2"
+      redirect_to root_path, notice: "Does this work?"
     else
       @flight_data = FlightData.new(JSON.parse(response.body)["FareInfo"])
     if params[:temperature_limit] == "bring_the_heat"

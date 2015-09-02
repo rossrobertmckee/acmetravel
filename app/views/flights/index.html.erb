@@ -117,18 +117,16 @@ $(document).ready(function() {
 });
 </script>
   
+  <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
 
-
+<% if notice.present? %>
+<p class="alert alert-danger"><%= notice %></p>
+<% end %> 
 
 <div class="container-full">
 
-<% if alert.present? %>
-<p class="alert alert-danger"><%= alert %></p>
-<% end %> 
-
-<% if flash[:error] %>
-  <p><%= flash[:error] %></p>
-<% end %>
 
 
 <!-- 

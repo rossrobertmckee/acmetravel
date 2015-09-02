@@ -24,9 +24,9 @@
                 <b>$<%= fare.lowest_fare.to_i %> </b>
               </div>
               <div class="depart-return col-xs-5">
-                You'd Leave <%= (fare.departure_date_time.to_time).strftime("on %m/%d/%Y") %>
+                You'd Leave <%= (fare.departure_date_time.to_time).strftime("on %A, %B %-d") %> 
                 <br />
-                And return <%= (fare.return_date_time.to_time).strftime("on %m/%d/%Y")  %>
+                And return <%= (fare.return_date_time.to_time).strftime("on %A, %B %-d")  %>
               </div>
 
                 <% fare.links.each do |flight_link| %>
