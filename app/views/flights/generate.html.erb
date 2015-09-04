@@ -7,7 +7,7 @@
 <% recipient_email = "rossrobertmckee@gmail.com" %>
 <% itinerary_body = "Generate loaded!" %>
 <% x = ItineraryMailer.itinerary("#{recipient_email}", "#{itinerary_body}") %>
-<% x.deliver %>
+<!-- <% x.deliver %> -->
 
 <% @airport_data.each do |x| %>
 	<% if x.country == "United States" %>
