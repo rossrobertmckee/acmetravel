@@ -66,9 +66,9 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#signinForm').formValidation({
         framework: 'bootstrap',
-        live: 'disabled',
+        live: 'enabled',
         icon: {
-            valid: 'glyphicon glyphicon-ok',
+            // valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
@@ -80,6 +80,9 @@ $(document).ready(function() {
                     },
                     numeric: {
                         message: 'The cost must be a number'
+                    },
+                    greaterThan: {
+                        value: 50
                     }
                 }
             },
@@ -125,130 +128,126 @@ $(document).ready(function() {
       <h1>Let's go somewhere...</h1>
       <p class="lead">acmeTRAVEL<sup>BETA</sup>&nbsp finds your next getaway,<br />without entering a destination...</p>
           <br /><br />
-<form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
-  <div class="form-group col-xs-3">
-    <!-- Deactivated to prevent searching for incorrect airport code.  Do not reomve! Restore after refactor.
-      <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city"> -->
-      <select class="form-control combobox" id="length_of_stay" name="search[origin]" required>
-          <option></option>
-          <option value="ATL">ATL - Atlanta</option>
-          <option value="BNA">BNA - Nashville</option>
-          <option value="BWI">BWI - Baltimore</option>
-          <option value="ANC">ANC - Anchorage</option>
-          <option value="BOS">BOS - Boston</option>
-          <option value="CLE">CLE - Cleveland</option>
-          <option value="CLT">CLT - Charlotte</option>
-          <option value="CVG">CVG - Hebron</option>
-          <option value="DCA">DCA - Arlington</option>
-          <option value="DEN">DEN - Denver</option>
-          <option value="DFW">DFW - Dallas</option>
-          <option value="DTW">DTW - Detroit</option>
-          <option value="EWR">EWR - Newark</option>
-          <option value="FLL">FLL - Fort Lauderdale</option>
-          <option value="IAD">IAD - Washington</option>
-          <option value="IAH">IAH - Houston</option>
-          <option value="ILN">ILN - Wilmington</option>
-          <option value="LAS">LAS - Las Vegas</option>
-          <option value="LAX">LAX - Los Angeles</option>
-          <option value="MCO">MCO - Orlando</option>
-          <option value="MCI">MCI - Kansas City</option>
-          <option value="MDW">MDW - Chicago</option>
-          <option value="MEM">MEM - Memphis</option>
-          <option value="MIA">MIA - Miami</option>
-          <option value="MKE">MKE - Milwaukee</option>
-          <option value="MSP">MSP - St. Paul</option>
-          <option value="ORD">ORD - Chicago</option>
-          <option value="PDX">PDX - Portland</option>
-          <option value="PHL">PHL - Philadelphia</option>
-          <option value="PHX">PHX - Phoenix</option>
-          <option value="SAN">SAN - San Diego</option>
-          <option value="SFO">SFO - San Francisco</option>
-          <option value="SEA">SEA - Seattle</option>
-          <option value="SJU">SJU - Carolina</option>
-          <option value="SLC">SLC - Salt Lake City</option>
-          <option value="STL">STL - St. Louis</option>
-          <option value="TOL">TOL - Swanton</option>
-          <option value="TPA">TPA - Tampa</option>
-          <option value="JFK">JFK - New York</option>
-          <option value="LGA">LGA - New York</option>
-      </select>
-  </div>
+        <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
+          <div class="form-group col-xs-3">
+            <!-- Deactivated to prevent searching for incorrect airport code.  Do not reomve! Restore after refactor.
+              <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city"> -->
+              <select class="form-control combobox" id="length_of_stay" name="search[origin]" required>
+                  <option></option>
+                  <option value="ATL">ATL - Atlanta</option>
+                  <option value="BNA">BNA - Nashville</option>
+                  <option value="BWI">BWI - Baltimore</option>
+                  <option value="ANC">ANC - Anchorage</option>
+                  <option value="BOS">BOS - Boston</option>
+                  <option value="CLE">CLE - Cleveland</option>
+                  <option value="CLT">CLT - Charlotte</option>
+                  <option value="CVG">CVG - Hebron</option>
+                  <option value="DCA">DCA - Arlington</option>
+                  <option value="DEN">DEN - Denver</option>
+                  <option value="DFW">DFW - Dallas/Fort Worth</option>
+                  <option value="DTW">DTW - Detroit</option>
+                  <option value="EWR">EWR - Newark</option>
+                  <option value="FLL">FLL - Fort Lauderdale</option>
+                  <option value="IAD">IAD - Washington</option>
+                  <option value="IAH">IAH - Houston</option>
+                  <option value="ILN">ILN - Wilmington</option>
+                  <option value="LAS">LAS - Las Vegas</option>
+                  <option value="LAX">LAX - Los Angeles</option>
+                  <option value="MCO">MCO - Orlando</option>
+                  <option value="MCI">MCI - Kansas City</option>
+                  <option value="MDW">MDW - Chicago</option>
+                  <option value="MEM">MEM - Memphis</option>
+                  <option value="MIA">MIA - Miami</option>
+                  <option value="MKE">MKE - Milwaukee</option>
+                  <option value="MSP">MSP - St. Paul</option>
+                  <option value="ORD">ORD - Chicago</option>
+                  <option value="PDX">PDX - Portland</option>
+                  <option value="PHL">PHL - Philadelphia</option>
+                  <option value="PHX">PHX - Phoenix</option>
+                  <option value="SAN">SAN - San Diego</option>
+                  <option value="SFO">SFO - San Francisco</option>
+                  <option value="SEA">SEA - Seattle</option>
+                  <option value="SJU">SJU - Carolina</option>
+                  <option value="SLC">SLC - Salt Lake City</option>
+                  <option value="STL">STL - St. Louis</option>
+                  <option value="TOL">TOL - Swanton</option>
+                  <option value="TPA">TPA - Tampa</option>
+                  <option value="JFK">JFK - New York</option>
+                  <option value="LGA">LGA - New York</option>
+              </select>
+          </div>
 
-  <div class="form-group col-sm-3">
-    <div class="input-group">
-      <div class="input-group-addon">$</div>
-        <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
-        <div class="input-group-addon">.00</div>
-    </div>
-  </div>
-
-
-  <div class='col-sm-3'>      
-    <div class="form-group">
-          <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
-    </div>
-  </div> 
-
-  <div class='col-sm-3'>      
-    <div class="form-group">
-          <input type="text" class="form-control" name="search[latestdeparturedate]" placeholder= "Latest departure" id="latestDate" />
-    </div>
-  </div> 
-
-      <br />
-    <div class="form-group col-sm-3">
-      <!-- <label for="length_of_stay">How long can you stay for?</label> -->
-       <select class="form-control" id="length_of_stay" name="search[lengthofstay]" required>
-          <option value="" selected disabled>Length?</option>
-          <option value="1">Just a day</option>
-          <option value="2">A couple days</option>
-          <option value="3">Three Days</option>
-          <option value="4">Four Days</option>
-          <option value="5">Cinco Dias</option>
-          <option value="6">Six Days</option>
-          <option value="7">A solid week!</option>
-          <option value="8">Eight Days</option>
-          <option value="9">Nine Days</option>
-          <option value="10">Ten Days</option>
-          <option value="11">Eleven Days</option>
-          <option value="12">Twelve Days</option>
-          <option value="13">Thirteen Days</option>
-          <option value="14">Two Weeks!</option>
-          <option value="15">Fifteen Days</option>
-          <option value="16">Sixteen Days</option>
-        </select>
-    </div>
-    <div class="form-group col-sm-3">
-      <!-- <label for="length_of_stay">What are you looking for?</label> -->
-       <select class="form-control" id="length_of_stay" name="search[theme]" required>
-          <option value="" selected disabled>Where to?!?</option>
-          <option value="beach">Sand, waves, and sunshine.</option>
-          <option value="skiing">Somewhere with skiing</option>
-          <option value="caribbean">Somewhere tropical</option>
-          <option value="outdoors">The great outdoors</option>
-          <option value="gambling">Casinos, bars, and clubs</option>
-          <option value="romantic">Somewhere romantic</option>
-          <option value="shopping">Somewhere to shop</option>
-          <option value="theme-park">A major theme park</option>
-        </select>
-    </div>
-    <div class="form-group col-sm-3">
-      <div class="checkbox">
-      <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">At least 72&deg;?</label>
-      </div>
-    </div>
-    <div class="btn-search">
-      <button type="submit" class="btn btn-success">Search</button>
-    </div>
-      <% flash.each do |key, value| %>
-        <br /><br />
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-</form>
+          <div class="form-group col-sm-3">
+            <div class="input-group">
+              <div class="input-group-addon">$</div>
+                <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
+                <div class="input-group-addon">.00</div>
+            </div>
+          </div>
 
 
+          <div class='col-sm-3'>      
+            <div class="form-group">
+                  <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
+            </div>
+          </div> 
 
+          <div class='col-sm-3'>      
+            <div class="form-group">
+                  <input type="text" class="form-control" name="search[latestdeparturedate]" placeholder= "Latest departure" id="latestDate" />
+            </div>
+          </div> 
 
+              <br />
+            <div class="form-group col-sm-3">
+              <!-- <label for="length_of_stay">How long can you stay for?</label> -->
+               <select class="form-control" id="length_of_stay" name="search[lengthofstay]" required>
+                  <option value="" selected disabled>Length?</option>
+                  <option value="1">Just a day</option>
+                  <option value="2">A couple days</option>
+                  <option value="3">Three Days</option>
+                  <option value="4">Four Days</option>
+                  <option value="5">Cinco Dias</option>
+                  <option value="6">Six Days</option>
+                  <option value="7">A solid week!</option>
+                  <option value="8">Eight Days</option>
+                  <option value="9">Nine Days</option>
+                  <option value="10">Ten Days</option>
+                  <option value="11">Eleven Days</option>
+                  <option value="12">Twelve Days</option>
+                  <option value="13">Thirteen Days</option>
+                  <option value="14">Two Weeks!</option>
+                  <option value="15">Fifteen Days</option>
+                  <option value="16">Sixteen Days</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+              <!-- <label for="length_of_stay">What are you looking for?</label> -->
+               <select class="form-control" id="length_of_stay" name="search[theme]" required>
+                  <option value="" selected disabled>Where to?!?</option>
+                  <option value="beach">Sand, waves, and sunshine.</option>
+                  <option value="skiing">Somewhere with skiing</option>
+                  <option value="caribbean">Somewhere tropical</option>
+                  <option value="outdoors">The great outdoors</option>
+                  <option value="gambling">Casinos, bars, and clubs</option>
+                  <option value="romantic">Somewhere romantic</option>
+                  <option value="shopping">Somewhere to shop</option>
+                  <option value="theme-park">A major theme park</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+              <div class="checkbox">
+              <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">At least 72&deg;?</label>
+              </div>
+            </div>
+            <div class="btn-search">
+              <button type="submit" class="btn btn-success">Search</button>
+            </div>
+              <% flash.each do |key, value| %>
+                <br /><br />
+                <div class="alert alert-<%= key %>"><%= value %></div>
+              <% end %>
+        </form>
     </div>
   </div>  
 </div> <!-- /row -->
