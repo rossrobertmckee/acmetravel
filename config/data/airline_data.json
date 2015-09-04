@@ -1,0 +1,98 @@
+[
+  {
+    "airline": "JetBlue Airways",
+    "iata_code": "B6"
+  },
+  {
+    "airline": "American Airlines",
+    "iata_code": "AA"
+  },
+ 	{
+    "airline": "China Southern Airlines",
+    "iata_code": "CZ"
+  },
+  {
+    "airline": "Amber Air",
+    "iata_code": "0A"
+  },
+  {
+    "airline": "Blue Air",
+    "iata_code": "0B"
+  },
+  {
+    "airline": "Air Philippines",
+    "iata_code": "2P"
+  },
+  {
+    "airline": "United Airways (United Bangladesh)",
+    "iata_code": "4H"
+  },
+  {
+    "airline": "Airbus France",
+    "iata_code": "4Y"
+  },
+  {
+    "airline": "United Airlines",
+    "iata_code": "UA"
+  },
+  {
+    "airline": "Delta Airlines",
+    "iata_code": "DL"
+  },
+  {
+    "airline": "Southwest Airlines",
+    "iata_code": "WN"
+  },
+  {
+    "airline": "Ryanair",
+    "iata_code": "FR"
+  },
+  {
+    "airline": "China Eastern Airlines",
+    "iata_code": "MU"
+  },
+  {
+    "airline": "easyJet",
+    "iata_code": "U2"
+  },
+  {
+    "airline": "Lufthansa",
+    "iata_code": "LH"
+  },
+  {
+    "airline": "Air China",
+    "iata_code": "CA"
+  },
+  {
+    "airline": "Emirates Airline",
+    "iata_code": "EK"
+  },
+  {
+    "airline": "British Airways",
+    "iata_code": "BA"
+  },
+  {
+    "airline": "Air France",
+    "iata_code": "AF"
+  },
+  {
+    "airline": "Turkish Airlines",
+    "iata_code": "TK"
+  },
+  {
+    "airline": "KLM",
+    "iata_code": "KL"
+  },
+  {
+    "airline": "Frontier Airlines",
+    "iata_code": "F9"
+  },
+  {
+    "airline": "Virgin Atlantic Airways",
+    "iata_code": "VS"
+  },
+  {
+    "airline": "Virgin America",
+    "iata_code": "VX"
+  }
+  ]

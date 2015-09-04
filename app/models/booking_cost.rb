@@ -51,11 +51,10 @@ class BookingCost
 	end
 
 		def return_date_title
-			array = []
-		@raw_data["AirItinerary"]["OriginDestinationOptions"].each do |k, legs| 
-			legs.each do |flight_segment|
-				date = flight_segment["FlightSegment"].last
-				return_date = (date["DepartureDateTime"].to_time).strftime("%A, %B %-d")
+		@raw_data["AirItinerary"]["OriginDestinationOptions"].each do |k, legs|
+			date = legs.last["FlightSegment"]
+			date.each do |x|
+				return_date = (x["DepartureDateTime"].to_time).strftime("%A, %B %-d")
 				return return_date
 			end
 		end

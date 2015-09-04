@@ -32,6 +32,10 @@ class FlightsController < ApplicationController
   def show
   end
 
+  def generate
+    @airport_data = Airport.major_airports
+  end
+
 end
 
 

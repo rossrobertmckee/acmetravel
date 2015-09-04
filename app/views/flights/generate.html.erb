@@ -1,0 +1,84 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.jquery.js"></script>
+<script src="https://raw.githubusercontent.com/danielfarrell/bootstrap-combobox/master/js/bootstrap-combobox.js"></script>
+<h3>Well, hello there...</h3>
+<br />
+<br />
+
+       <select class="form-control" id="length_of_stay" name="search[lengthofstay]" required>
+          <option value="" selected disabled>Length?</option>
+          <option value="1">Just a day</option>
+          <option value="2">A couple days</option>
+          <option value="3">Three Days</option>
+          <option value="4">Four Days</option>
+          <option value="5">Cinco Dias</option>
+          <option value="6">Six Days</option>
+          <option value="7">A solid week!</option>
+          <option value="8">Eight Days</option>
+          <option value="9">Nine Days</option>
+          <option value="10">Ten Days</option>
+          <option value="11">Eleven Days</option>
+          <option value="12">Twelve Days</option>
+          <option value="13">Thirteen Days</option>
+          <option value="14">Two Weeks!</option>
+          <option value="15">Fifteen Days</option>
+          <option value="16">Sixteen Days</option>
+        </select>
+
+<select class="combobox form-control" id="length_of_stay" name="search[origin]" required>
+  	<option></option>
+		<option value="ATL">ATL - Atlanta</option>
+		<option value="BNA">BNA - Nashville</option>
+		<option value="BWI">BWI - Baltimore</option>
+		<option value="ANC">ANC - Anchorage</option>
+		<option value="BOS">BOS - Boston</option>
+		<option value="CLE">CLE - Cleveland</option>
+		<option value="CLT">CLT - Charlotte</option>
+		<option value="CVG">CVG - Hebron</option>
+		<option value="DCA">DCA - Arlington</option>
+		<option value="DEN">DEN - Denver</option>
+		<option value="DFW">DFW - Dallas</option>
+		<option value="DTW">DTW - Detroit</option>
+		<option value="EWR">EWR - Newark</option>
+		<option value="FLL">FLL - Fort Lauderdale</option>
+		<option value="IAD">IAD - Washington</option>
+		<option value="IAH">IAH - Houston</option>
+		<option value="ILN">ILN - Wilmington</option>
+		<option value="LAS">LAS - Las Vegas</option>
+		<option value="LAX">LAX - Los Angeles</option>
+		<option value="MCO">MCO - Orlando</option>
+		<option value="MCI">MCI - Kansas City</option>
+		<option value="MDW">MDW - Chicago</option>
+		<option value="MEM">MEM - Memphis</option>
+		<option value="MIA">MIA - Miami</option>
+		<option value="MKE">MKE - Milwaukee</option>
+		<option value="MSP">MSP - St. Paul</option>
+		<option value="ORD">ORD - Chicago</option>
+		<option value="PDX">PDX - Portland</option>
+		<option value="PHL">PHL - Philadelphia</option>
+		<option value="PHX">PHX - Phoenix</option>
+		<option value="SAN">SAN - San Diego</option>
+		<option value="SFO">SFO - San Francisco</option>
+		<option value="SEA">SEA - Seattle</option>
+		<option value="SJU">SJU - Carolina</option>
+		<option value="SLC">SLC - Salt Lake City</option>
+		<option value="STL">STL - St. Louis</option>
+		<option value="TOL">TOL - Swanton</option>
+		<option value="TPA">TPA - Tampa</option>
+		<option value="JFK">JFK - New York</option>
+		<option value="LGA">LGA - New York</option>
+</select>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.combobox').combobox();
+  });
+</script>
+
+
+
+<% @airport_data.each do |x| %>
+	<% if x.country == "United States" %>
+		option value="<%= x.code %>"><%= x.code %> - <%= x.city %> 
+		<br />
+	<% end %>
+<% end %>

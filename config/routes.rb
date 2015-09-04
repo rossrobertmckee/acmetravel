@@ -4,6 +4,7 @@ Acmetravel::Application.routes.draw do
     resources :flights do 
       collection do
         post "search"
+        get "generate"
       end
     end
     

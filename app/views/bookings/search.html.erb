@@ -1,21 +1,21 @@
 <% x = @booking_flights.booking_cost.first %>
-    <h2 style="color: black"><%= WorldAirports.iata(x.origin_title).city %> to <%= WorldAirports.iata(x.destination_title).city %>
-    with a current high of 
+    <h2 style="color: black"><%= WorldAirports.iata(x.origin_title).city %> to <%= WorldAirports.iata(x.destination_title).city %></h2>
+    <h5>where they have a current high of 
     <% temp = Airport.find_by(code: "#{x.destination_title}") %> 
-    <%= temp.current_high_temp %>&deg;
-    <br />
+    <%= temp.current_high_temp %>&deg;</h5>
+    <h4>
     Departing <%= x.departure_date_title %>
     <br />
-    Returning on <%= x.return_date_title %></h2>
+    Returning on <%= x.return_date_title %></h4>
 
 
 <% @booking_flights.booking_cost.each do |y| %>
     <h3 style="color: black"><%= y.origin_title %> to <%= y.destination_title %></h3>
-    <%= y.total_fare %>
+    <h3 style="color: red"><%= y.total_fare %></h3>
     <br />
     <% y.flight_data.each do |flight_segment| %>
         <% flight_segment["FlightSegment"].each do |departure_or_arrival| %>
-            <br />
+            
             <%= WorldAirports.iata(departure_or_arrival["DepartureAirport"]["LocationCode"]).city %>
             ==>
             <%= WorldAirports.iata(departure_or_arrival["ArrivalAirport"]["LocationCode"]).city %>
@@ -23,11 +23,16 @@
             <%= (departure_or_arrival["DepartureDateTime"].to_time).strftime("Departing at %-I:%-M%-p")  %>
             and
             <%= (departure_or_arrival["ArrivalDateTime"].to_time).strftime("Arriving at %-I:%-M%-p on %A, %B %-d")  %>
-            <br />
-            <br />
-            <% if departure_or_arrival == flight_segment["FlightSegment"].last %>
-                <%= "Return trip?" %>
+            <br />via
+            <% airline_iata_code = departure_or_arrival["OperatingAirline"]["Code"] %>
+            <% airline_data = Airline.where(iata_code: "#{airline_iata_code}") %>
+            <% airline_data.each do |x| %>
+                <%= x.airline %>
             <% end %> 
+            flight
+            <%= departure_or_arrival["OperatingAirline"]["FlightNumber"] %>
+            <br />
+            <br />
         <% end %>
     <% end %>
 <% end %>
