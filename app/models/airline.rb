@@ -3,8 +3,8 @@ class Airline < ActiveRecord::Base
 
 	def self.build_from_json(raw_data) 
 		a = Airline.new
-		a.airline = raw_data["airline"]
-		a.iata_code = raw_data["iata_code"]
+		a.airline = raw_data["AirlineName"]
+		a.iata_code = raw_data["AirlineCode"]
 		a.web_site = raw_data["web_site"]
 		a.reservations_number = raw_data["reservations_number"]
     return a

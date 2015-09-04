@@ -7,35 +7,36 @@
     Departing <%= x.departure_date_title %>
     <br />
     Returning on <%= x.return_date_title %></h4>
-
-
+    <hr />
+<% option_count = 1 %>
 <% @booking_flights.booking_cost.each do |y| %>
-    <h3 style="color: black"><%= y.origin_title %> to <%= y.destination_title %></h3>
-    <h3 style="color: red"><%= y.total_fare %></h3>
-    <br />
-    <% y.flight_data.each do |flight_segment| %>
-        <% flight_segment["FlightSegment"].each do |departure_or_arrival| %>
-            
-            <%= WorldAirports.iata(departure_or_arrival["DepartureAirport"]["LocationCode"]).city %>
-            ==>
-            <%= WorldAirports.iata(departure_or_arrival["ArrivalAirport"]["LocationCode"]).city %>
-            <br />
-            <%= (departure_or_arrival["DepartureDateTime"].to_time).strftime("Departing at %-I:%-M%-p")  %>
-            and
-            <%= (departure_or_arrival["ArrivalDateTime"].to_time).strftime("Arriving at %-I:%-M%-p on %A, %B %-d")  %>
-            <br />via
-            <% airline_iata_code = departure_or_arrival["OperatingAirline"]["Code"] %>
-            <% airline_data = Airline.where(iata_code: "#{airline_iata_code}") %>
-            <% airline_data.each do |x| %>
-                <%= x.airline %>
-            <% end %> 
-            flight
-            <%= departure_or_arrival["OperatingAirline"]["FlightNumber"] %>
-            <br />
-            <br />
+    <h3 style="color: black">Itinerary Option <%= option_count %> for <span style="color: red">$<%= y.total_fare %></span></h3>
+        <% option_count = option_count + 1 %>
+            <% y.flight_data.each do |flight_segment| %>
+                <% flight_segment["FlightSegment"].each do |departure_or_arrival| %>
+
+                    
+                    <%= WorldAirports.iata(departure_or_arrival["DepartureAirport"]["LocationCode"]).city %>
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    <%= WorldAirports.iata(departure_or_arrival["ArrivalAirport"]["LocationCode"]).city %>
+                    <br />
+                    <%= (departure_or_arrival["DepartureDateTime"].to_time).strftime("Departing at %-I:%-M%-p")  %>
+                    and
+                    <%= (departure_or_arrival["ArrivalDateTime"].to_time).strftime("Arriving at %-I:%-M%-p on %A, %B %-d")  %>
+                    <br />via
+                    <% airline_iata_code = departure_or_arrival["OperatingAirline"]["Code"] %>
+                    <% airline_data = Airline.where(iata_code: "#{airline_iata_code}") %>
+                    <% airline_data.each do |x| %>
+                        <%= x.airline %>
+                    <% end %> 
+                    flight
+                    <%= departure_or_arrival["OperatingAirline"]["FlightNumber"] %>
+                    <br />
+                    <br />
+                <% end %>
+            <% end %>
+            <hr />
         <% end %>
-    <% end %>
-<% end %>
 
 
 
@@ -46,7 +47,7 @@
 
 
 
-
+<!-- Old Code for refrence purposes.  Delte on FINAL refactor only!
 <h1 style="color: black">OLD CODE</h1>
 [
     [
@@ -302,4 +303,4 @@
                 "TicketType"=>"eTicket"
             }
         },
-       
+    -->   
