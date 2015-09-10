@@ -35,10 +35,65 @@
                     <br />
                 <% end %>
             <% end %>
-            <hr />
+
+<% linked = "#" + option_count.to_s %>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-link" data-toggle="modal" data-target=<%= linked %>><u>Email Itinerary</u></button>
+
+<!-- Modal -->
+<div id=<%= option_count %> class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Your Itinerary looks awesome!</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_tag({controller: "bookings", action: "mail"}, method: "post") do %>
+
+      <p><%= y.total_fare %></p>
+            <% y.flight_data.each do |flight_segment| %>
+                <% flight_segment["FlightSegment"].each do |departure_or_arrival| %>
+                    <%= WorldAirports.iata(departure_or_arrival["DepartureAirport"]["LocationCode"]).city %>
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    <%= WorldAirports.iata(departure_or_arrival["ArrivalAirport"]["LocationCode"]).city %>
+                    <br />
+                    <%= (departure_or_arrival["DepartureDateTime"].to_time).strftime("Departing at %-I:%-M%-p")  %>
+                    and
+                    <%= (departure_or_arrival["ArrivalDateTime"].to_time).strftime("Arriving at %-I:%-M%-p on %A, %B %-d")  %>
+                    <br />via
+                    <% airline_iata_code = departure_or_arrival["OperatingAirline"]["Code"] %>
+                    <% airline_data = Airline.where(iata_code: "#{airline_iata_code}") %>
+                    <% airline_data.each do |x| %>
+                        <%= x.airline %>
+                    <% end %> 
+                    flight
+                    <%= departure_or_arrival["OperatingAirline"]["FlightNumber"] %>
+                    <br />
+                    <br />
+                <% end %>
+            <% end %> 
+
+                <%= hidden_field_tag :body, "#{y.flight_data}" %>
+                <%= label_tag("Email: ") %>
+                <%= email_field_tag(:email) %>
+            <%= submit_tag("Send it!") %>
         <% end %>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
+  </div>
+</div>
+
+            <hr />
+        <% end %>
 
 
 

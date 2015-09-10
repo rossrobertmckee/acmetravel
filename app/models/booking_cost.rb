@@ -1,5 +1,5 @@
 class BookingCost
-	attr_accessor :total_fare, :flight_data, :destination_title, :origin_title, :departure_date_title, :return_date_title
+	attr_accessor :total_fare, :flight_data, :destination_title, :origin_title, :departure_date_title, :return_date_title, :mail_test
 	def initialize(raw_data)
 		@raw_data = raw_data
 		self.total_fare = booking_fare
@@ -8,6 +8,7 @@ class BookingCost
 		self.origin_title = origin_title
 		self.departure_date_title = departure_date_title
 		self.return_date_title =	return_date_title
+		self.mail_test = mail_test
 	end
 
 	def booking_fare
@@ -61,3 +62,5 @@ class BookingCost
 	end
 
 end
+
+

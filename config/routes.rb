@@ -9,6 +9,7 @@ Acmetravel::Application.routes.draw do
     end
     
     get 'bookings/search' => 'bookings#search', as: 'search_bookings'
+    match '/bookings', to: 'bookings#mail', via: 'post'
 
     resources :airports do
       get :autocomplete_airport_city, :on => :collection

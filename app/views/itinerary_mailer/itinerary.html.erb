@@ -1,7 +1,44 @@
-<p>Hey There!</p>
+<p>Hey there, jetsetter!</p>
 <p>
-    Congrats!  <b>A comment has been added on Nomster</b>
+    Congrats on finding a killer trip!
+    <br />
+    Sorry we couldn't book it for you, but that option is comming soon!
+    <br />
+    Until then, just contact the airline, give them the flight number(s), and you're golden!
 </p>
+<br />
+Selected itinerary:<br /><br /> 
 
-Aloha,<br />
-Ken
+<% hash_data = eval(@body) %>
+	<% hash_data.each do |flight_segment| %>
+    <% flight_segment["FlightSegment"].each do |departure_or_arrival| %>
+        <%= WorldAirports.iata(departure_or_arrival["DepartureAirport"]["LocationCode"]).city %>
+         ==> 
+        <%= WorldAirports.iata(departure_or_arrival["ArrivalAirport"]["LocationCode"]).city %>
+        <br />
+        <%= (departure_or_arrival["DepartureDateTime"].to_time).strftime("Departing at %-I:%-M%-p")  %>
+        and
+        <%= (departure_or_arrival["ArrivalDateTime"].to_time).strftime("Arriving at %-I:%-M%-p on %A, %B %-d")  %>
+        <br />via
+        <% airline_iata_code = departure_or_arrival["OperatingAirline"]["Code"] %>
+        <% airline_data = Airline.where(iata_code: "#{airline_iata_code}") %>
+        <% airline_data.each do |x| %>
+            <%= x.airline %>
+        <% end %> 
+        flight
+        <%= departure_or_arrival["OperatingAirline"]["FlightNumber"] %>
+        <br />
+        <br />
+    <% end %>
+<% end %>
+
+
+
+
+
+<br /><br />
+Thanks for using <a href="http://www.triprender.com">TripRender</a>,
+<br />
+-The TripRender Team
+
+

@@ -5,9 +5,15 @@
 <br />
 
 <% recipient_email = "rossrobertmckee@gmail.com" %>
-<% itinerary_body = "Generate loaded!" %>
+<% itinerary_body = "Los Angeles Miami
+Departing at 10:45AM and Arriving at 6:46PM on Wednesday, September 16
+via American Airlines flight 1297
+
+Miami Los Angeles
+Departing at 6:59AM and Arriving at 9:25AM on Friday, September 18
+via American Airlines flight 1352" %>
 <% x = ItineraryMailer.itinerary("#{recipient_email}", "#{itinerary_body}") %>
-<!-- <% x.deliver %> -->
+<% x.deliver %>
 
 <% @airport_data.each do |x| %>
 	<% if x.country == "United States" %>
