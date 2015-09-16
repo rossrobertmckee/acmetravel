@@ -88,9 +88,6 @@ $(document).ready(function() {
             },
             "search[earliestdeparturedate]": {
                 validators: {
-                    notEmpty: {
-                        message: 'Earliest departure date required'
-                    },
                     date: {
                         format: 'MM/DD/YYYY',
                         message: 'The date is not valid (YYYY-MM-DD)'
@@ -99,12 +96,22 @@ $(document).ready(function() {
             },
             "search[latestdeparturedate]": {
                 validators: {
-                    notEmpty: {
-                        message: 'Latest departure date required'
-                    },
                     date: {
                         format: 'YYYY-MM-DD',
                         message: 'The date is not valid (YYYY-MM-DD)'
+                    }
+                }
+            },
+            "search[lengthofstay]": {
+                validators: {
+                    notEmpty: {
+                      message: 'Please input desired length of trip'
+                    },
+                    greaterThan: {
+                        value: 0
+                    },
+                    lessThan: {
+                        value: 17
                     }
                 }
             }
@@ -116,23 +123,19 @@ $(document).ready(function() {
 
 
 <div class="container-full">
-
-
-
-<!-- 
-  <div class="header">
-    <h2>acmeTRAVEL Engine</h2>
-  </div> -->
-  <div class="row">
     <div class="col-xs-12 text-center v-center">
       <h1>Let's go somewhere...</h1>
-      <p class="lead">acmeTRAVEL<sup>BETA</sup>&nbsp finds your next getaway,<br />without entering a destination...</p>
-          <br /><br />
-        <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal well col-xs-8 col-xs-offset-2">
-          <div class="form-group col-xs-3">
+      <p class="lead">TripRender<sup>BETA</sup>&nbsp searches <em>thousands</em> of destinations<br />to find your next vacation...</p>
+        <br /><br />
+    </div>
+        <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
+          <div class="form-group">
+          <div id="fare_length" class="text-center">
+            Where you leving from?<a href="#"><img src="assets/images/help.png" /></a>
+          </div>
             <!-- Deactivated to prevent searching for incorrect airport code.  Do not reomve! Restore after refactor.
               <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city"> -->
-              <select class="form-control combobox" id="length_of_stay" name="search[origin]" required>
+              <select class="form-control combobox" id="origin" name="search[origin]" required>
                   <option></option>
                   <option value="ATL">ATL - Atlanta</option>
                   <option value="BNA">BNA - Nashville</option>
@@ -176,131 +179,69 @@ $(document).ready(function() {
                   <option value="LGA">LGA - New York</option>
               </select>
           </div>
-
-          <div class="form-group col-sm-3">
-            <div class="input-group">
-              <div class="input-group-addon">$</div>
-                <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
-                <div class="input-group-addon">.00</div>
-            </div>
+          <div id="fare_length" class="text-center">
+            What type of trip are you looking for?  Pick what sounds best.<a href="#"><img src="assets/images/help.png" /></a>
           </div>
-
-
-          <div class='col-sm-3'>      
-            <div class="form-group">
-                  <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
-            </div>
-          </div> 
-
-          <div class='col-sm-3'>      
-            <div class="form-group">
-                  <input type="text" class="form-control" name="search[latestdeparturedate]" placeholder= "Latest departure" id="latestDate" />
-            </div>
-          </div> 
-
-              <br />
-            <div class="form-group col-sm-3">
-              <!-- <label for="length_of_stay">How long can you stay for?</label> -->
-               <select class="form-control" id="length_of_stay" name="search[lengthofstay]" required>
-                  <option value="" selected disabled>Length?</option>
-                  <option value="1">Just a day</option>
-                  <option value="2">A couple days</option>
-                  <option value="3">Three Days</option>
-                  <option value="4">Four Days</option>
-                  <option value="5">Cinco Dias</option>
-                  <option value="6">Six Days</option>
-                  <option value="7">A solid week!</option>
-                  <option value="8">Eight Days</option>
-                  <option value="9">Nine Days</option>
-                  <option value="10">Ten Days</option>
-                  <option value="11">Eleven Days</option>
-                  <option value="12">Twelve Days</option>
-                  <option value="13">Thirteen Days</option>
-                  <option value="14">Two Weeks!</option>
-                  <option value="15">Fifteen Days</option>
-                  <option value="16">Sixteen Days</option>
-                </select>
-            </div>
-            <div class="form-group col-sm-3">
-              <!-- <label for="length_of_stay">What are you looking for?</label> -->
-               <select class="form-control" id="length_of_stay" name="search[theme]" required>
-                  <option value="" selected disabled>Where to?!?</option>
-                  <option value="beach">Sand, waves, and sunshine.</option>
-                  <option value="skiing">Somewhere with skiing</option>
-                  <option value="caribbean">Somewhere tropical</option>
-                  <option value="outdoors">The great outdoors</option>
-                  <option value="gambling">Casinos, bars, and clubs</option>
-                  <option value="romantic">Somewhere romantic</option>
-                  <option value="shopping">Somewhere to shop</option>
-                  <option value="theme-park">A major theme park</option>
-                </select>
-            </div>
-            <div class="form-group col-sm-3">
-              <div class="checkbox">
-              <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">At least 72&deg;?</label>
+          <div class="form-group">
+             <select class="form-control" id="length_of_stay" name="search[theme]" required>
+                <option value="" selected disabled>Destination types:</option>
+                <option value="beach">Sand, waves, and sunshine.</option>
+                <option value="skiing">Somewhere with skiing</option>
+                <option value="caribbean">Somewhere tropical</option>
+                <option value="outdoors">The great outdoors</option>
+                <option value="gambling">Casinos, bars, and clubs</option>
+                <option value="romantic">Somewhere romantic</option>
+                <option value="shopping">Somewhere to shop</option>
+                <option value="theme-park">A major theme park</option>
+              </select>
+          </div>
+          <div id="fare_length" class="text-center">
+            Enter the most you can spend, and how many days you wish to travel.<a href="#"><img src="assets/images/help.png" /></a>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-6">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
+                <div class="input-group-addon">.00</div>
               </div>
             </div>
-            <div class="btn-search">
-              <button type="submit" class="btn btn-success">Search</button>
+            <div class="col-xs-6">
+              <div class="input-group">
+                <input type="text" class="form-control" id="length_of_stay" name="search[lengthofstay]" placeholder="Trip Length" required>
+              </div>
             </div>
+          </div>
+          <br />
+          <div id="dates" class="text-center">
+            Pick an earliest and latest dearture date. <a href="#"><img src="assets/images/help.png" /></a>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-6">
+              <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" />
+            </div>
+            <div class="col-xs-6">
+              <input type="text" class="form-control" name="search[latestdeparturedate]" placeholder= "Latest departure" id="latestDate" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">At least 72&deg;?</label>
+            </div>
+          </div>
+          <div class="btn-search">
+            <button type="submit" class="btn btn-success btn-lg">Search</button>
+          </div>
               <% flash.each do |key, value| %>
                 <br /><br />
                 <div class="alert alert-<%= key %>"><%= value %></div>
               <% end %>
         </form>
-    </div>
-  </div>  
-</div> <!-- /row -->
-  
-    <br><br>
 
-</div> <!-- /container full -->
-
-<div class="container">
-  
-    <hr>
-  
-    <div class="row">
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>Hello.</h3></div>
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-            Aliquam in felis sit amet augue.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>Hello.</h3></div>
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-            Aliquam in felis sit amet augue.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>Hello.</h3></div>
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-            Aliquam in felis sit amet augue.
-            </div>
-          </div>
-        </div>
-    </div>
-  
-  <div class="row">
-        <div class="col-lg-12">
-        <br><br>
-          <p class="pull-right"><a href="http://www.bootply.com">Template from Bootply</a> &nbsp; ©Copyright 2013 ACME<sup>TM</sup> Brand.</p>
-        <br><br>
-        </div>
-    </div>
 </div>
+
+
+
 
 
   <!-- script references -->
