@@ -162,7 +162,7 @@ $(document).ready(function() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">You're practically there already!</h4>
       </div>
       <div class="modal-body">
 
@@ -172,7 +172,7 @@ $(document).ready(function() {
 <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal">
           <div class="form-group">
           <div id="fare_length" class="text-center">
-            Where you leving from?<a href="#"><a href="#"><%= image_tag 'help2.png' %></a>
+            Where are you leving from?<a href="#"><a href="#"><%= image_tag 'help2.png' %></a>
           </div>
             <!-- Deactivated to prevent searching for incorrect airport code.  Do not reomve! Restore after refactor.
               <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city"> -->
@@ -221,7 +221,7 @@ $(document).ready(function() {
               </select>
           </div>
           <div id="fare_length" class="text-center">
-            What type of trip are you looking for?  Pick what sounds best.
+            What type of trip are you looking for?<br />Pick what sounds best.
           </div>
           <div class="form-group">
              <select class="form-control" id="length_of_stay" name="search[theme]" required>
@@ -237,7 +237,7 @@ $(document).ready(function() {
               </select>
           </div>
           <div id="fare_length" class="text-center">
-            Enter the most you can spend, and how many days you wish to travel.
+            Enter the most you can spend,<br />and how many days you wish to travel.
           </div>
           <div class="form-group">
             <div class="col-xs-6">
@@ -250,12 +250,12 @@ $(document).ready(function() {
             <div class="col-xs-6">
               <div class="input-group">
                 <input type="text" class="form-control" id="length_of_stay" name="search[lengthofstay]" placeholder="Trip Length" required>
+                <div class="input-group-addon">Days</div>
               </div>
             </div>
           </div>
-          <br />
           <div id="dates" class="text-center">
-            Pick an earliest and latest dearture date. <a href="#"><%= image_tag 'help2.png' %></a>
+            Optional: Pick an earliest and latest departure date. <a href="#"><%= image_tag 'help2.png' %></a>
           </div>
           <div class="form-group">
             <div class="col-xs-6">
@@ -278,13 +278,11 @@ $(document).ready(function() {
                 <div class="alert alert-<%= key %>"><%= value %></div>
               <% end %>
         </form>
-
+        <br />
         </div>
       <div class="modal-footer">
-
       </div>
     </div>
-
   </div>
 </div>
 
@@ -301,10 +299,10 @@ $(document).ready(function() {
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#searchModal">Start Searching!</button>
+                                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#searchModal"><span class="network-name">Start Searching!</span></button>
                             </li>
                             <li>
-                                <a href="#services" class="btn btn-warning btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">How it works</span></a>
+                                <a href="#services" class="btn btn-warning btn-lg"><span class="network-name">How it works</span></a>
                             </li>
                         </ul>
                         <% flash.each do |key, value| %>
@@ -335,7 +333,8 @@ $(document).ready(function() {
                     <p class="lead">The best part about Triprender: you don't need a destination in mind!  TripRender searches thousands of cities aorund the world based on your search criteria and only returns exactly what you're looking for!<br />All you need to do is selct a destintion type from the drop-down list.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <%=image_tag('ipad.png', {class:'img-responsive'}) %>
+                  <br />
+                    <%=image_tag('destination.png', {class:'img-responsive'}) %>
                 </div>
             </div>
 
@@ -356,8 +355,9 @@ $(document).ready(function() {
                     <h2 class="section-heading">How much can you spend<br>and how long you can stay for?</h2>
                     <p class="lead">Tell us the most you're willing to spend on airfare and we'll only show you trips you can afford. <br />Additionally, we'll need to know how many days you can travel.  Sound strange?  At TripRender, we search the up coming 90 days for your trip<a href="#"><%= image_tag 'help2.png' %></a>.  If you need more control over dates, then keep reading...</p>
                 </div>
+                <br />
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <%=image_tag('dog.png', {class:'img-responsive'}) %>
+                    <%=image_tag('price.png', {class:'img-responsive'}) %>
                 </div>
             </div>
 
@@ -375,11 +375,12 @@ $(document).ready(function() {
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Take control over departure<br>and choose a date range</h2>
+                    <h2 class="section-heading">Take control over departure<br>and choose a date range.</h2>
                     <p class="lead">If you're unable to let TripRender find flights anytime within the next 90 days, you can use our <b>optional</b> Date Range feature. To narrow down the dates, choose the soonest you can possibly leave and the latest possible date you can leave. If you need an exact departure day, set both fields to the same date. <a href="#"><%= image_tag 'help2.png' %></a></p>
                 </div>
+                <br />
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <%=image_tag('phones.png', {class:'img-responsive'}) %>
+                    <%=image_tag('dates.png', {class:'img-responsive'}) %>
                 </div>
             </div>
 
@@ -389,6 +390,28 @@ $(document).ready(function() {
     </div>
     <!-- /.content-section-a -->
 
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">You're almost there!<br>Pick your destination...</h2>
+                    <p class="lead">Depending on your search criteria, up to 50 of the <b>top</b> destinations will be presented.<br />First, pick the destination. Then, pick a price and corresponding date range that works best for you. Lastly, click on "Check Times" to see all availble times for that price on those dates. Boom. </p>
+                </div>
+                <br />
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <%=image_tag('destinations.png', {class:'img-responsive'}) %>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
   <a  name="contact"></a>
     <div class="banner">
 
