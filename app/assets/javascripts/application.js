@@ -18,10 +18,10 @@
 
 //= require autocomplete-rails
 
-
+//= require bootstrap-datepicker
 //= require_tree .
 //= require moment
-//= require bootstrap-datetimepicker
+
 //= require jquery-ui
 
 // Form Validation lib
