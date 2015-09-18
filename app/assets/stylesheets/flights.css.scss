@@ -8,10 +8,6 @@
 	color:red;
 }
 
-.city-headline {
-	font-size:300%;
-}
-
 .glyphicon.glyphicon-list {
 	font-size:80%;
 	color:rgb(200,200,200);
@@ -43,6 +39,19 @@
   font-size:1.25em;
 }
 
+
+
+
+.city-headline {
+  font-size: 3em;
+}
+
+@media (max-width:768px) {
+    .city-headline{font-size: 1.5em;}
+}
+
+
+
 // ComboBox Style
 
 .form-search .combobox-container,
@@ -58,7 +67,7 @@
 .combobox-selected .caret {
   display: none;
 }
-/* :not doesn't work in IE8 */
+/* :note doesn't work in IE8 */
 .combobox-container:not(.combobox-selected) .glyphicon-remove {
   display: none;
 }

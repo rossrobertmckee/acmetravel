@@ -60,9 +60,6 @@ $(document).ready(function() {
 });
 </script>
 
-
-
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -180,14 +177,14 @@ $(document).ready(function() {
             Enter the most you can spend,<br />and how many days you wish to travel.
           </div>
           <div class="form-group">
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
               <div class="input-group">
                 <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="maxfare" name="search[maxfare]" required>
+                  <input type="text" class="form-control" id="maxfare" name="search[maxfare]" placeholder="Max Fare" required>
                 <div class="input-group-addon">.00</div>
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
               <div class="input-group">
                 <input type="text" class="form-control" id="length_of_stay" name="search[lengthofstay]" placeholder="Trip Length" required>
                 <div class="input-group-addon">Days</div>
@@ -195,8 +192,9 @@ $(document).ready(function() {
             </div>
           </div>
           <div id="dates" class="text-center">
-            Optional: Pick an earliest and latest departure date. <a href="#"><%= image_tag 'help2.png' %></a>
+            Optional: Pick an earliest and latest departure date. <a href="#date_help" onClick='alert("Hello World!")' data-toggle="tooltip" title="Hooray!"><%= image_tag 'help2.png' %></a>
           </div>
+
           <div class="form-group">
             <div class="col-xs-6">
               <input type="text" class="form-control" name="search[earliestdeparturedate]" placeholder= "Earliest departure" id="departureDate" data-provide="datepicker-inline" data-date-format="yyyy-mm-dd" data-date-start-date="0d" data-date-end-date="+89d" />
@@ -233,8 +231,8 @@ $(document).ready(function() {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>The perfect destination</h1>
-                        <h3>Tell us what you're looking for...<br />and we'll find it.</h3>
+                        <h1>Need a Vacation?</h1>
+                        <h3>Using your max fare, availability, and destination criteria...<br />we render nearly every possible trip you can take.</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
@@ -328,7 +326,7 @@ $(document).ready(function() {
 
     </div>
     <!-- /.content-section-a -->
-
+    <a  name="date_help"></a>
     <div class="content-section-b">
 
         <div class="container">

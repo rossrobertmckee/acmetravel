@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav"> href="#">TripRender.com</a>
+                <a class="navbar-brand topnav"> <href="#">TripRender.com</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -30,8 +30,8 @@
         <!-- /.container -->
     </nav>
 <div class="container-full">
-  <div class="col-xs-offset-1">
-    <div class=" shadowbox col-xs-10 text-center">
+  <div class="col-md-offset-1 col-xs-offset-0 ">
+    <div class="shadowbox col-md-10 col-xs-11 text-center">
       <div class="panel-group col-xs-12" id="accordion" role="tablist" aria-multiselectable="true">
         <% @results.each do |destination_location, fares| %>
           <% convert_iata = destination_location %>
@@ -51,10 +51,10 @@
           <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="variable">
             <div class="panel-body">
               <% fares.each do |fare| %> 
-              <div class="price col-xs-2 col-xs-offset-1">
+              <div class="price col-md-2 col-md-offset-1">
                 <b>$<%= fare.lowest_fare.to_i %> </b>
               </div>
-              <div class="depart-return col-xs-5">
+              <div class="depart-return col-md-5">
                 You'd Leave <%= (fare.departure_date_time.to_time).strftime("on %A, %B %-d") %> 
                 <br />
                 And return <%= (fare.return_date_time.to_time).strftime("on %A, %B %-d")  %>
@@ -62,7 +62,7 @@
 
                 <% fare.links.each do |flight_link| %>
                   <% booking_link = flight_link["href"] %>
-                  <div class="bton">
+                  <div class="bton col-md-3">
                     <%= link_to "Check Times", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-primary' %>
                   </div>
                 
