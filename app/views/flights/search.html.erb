@@ -49,23 +49,22 @@
           </div>
 
           <div id=<%= convert_iata %> class="panel-collapse collapse" role="tabpanel" aria-labelledby="variable">
-            <div class="panel-body">
+            <div class="panel-body col-xs-12">
               <% fares.each do |fare| %> 
-              <div class="price col-md-2 col-md-offset-1">
+              <div class="price row col-md-2 col-md-offset-1">
                 <b>$<%= fare.lowest_fare.to_i %> </b>
               </div>
-              <div class="depart-return col-md-5">
-                You'd Leave <%= (fare.departure_date_time.to_time).strftime("on %A, %B %-d") %> 
+              <div class="depart-return col-md-offset-1 row col-md-5">
+                DEPART <%= (fare.departure_date_time.to_time).strftime("on %A, %B %-d") %> 
                 <br />
-                And return <%= (fare.return_date_time.to_time).strftime("on %A, %B %-d")  %>
+                RETURN <%= (fare.return_date_time.to_time).strftime("on %A, %B %-d")  %>
               </div>
 
                 <% fare.links.each do |flight_link| %>
                   <% booking_link = flight_link["href"] %>
-                  <div class="bton col-md-3">
+                  <div class="bton row">
                     <%= link_to "Check Times", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-primary' %>
                   </div>
-                
                   <hr />  
               <% end %>
             <% end %>
