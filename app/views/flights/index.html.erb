@@ -71,7 +71,7 @@ $(document).ready(function() {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="#">TripRender.com</a>
+                <a class="navbar-brand topnav"><%=image_tag('logo.png', {class:'img-responsive'}) %> </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -109,7 +109,7 @@ $(document).ready(function() {
 <form action="/flights/search" method="POST" id="signinForm" class="form-horizontal">
           <div class="form-group">
           <div id="fare_length" class="text-center">
-            Where are you leving from?<a href="#"><a href="#"><%= image_tag 'help2.png' %></a>
+            Where are you leaving from?<a href="#"><a href="#" onClick='alert("Is your city not listed? Don&#39;t worry, we&#39;re working around the clock trying to add every city with a major airport.  More airports means more combinations, which starts getting complex... woof. I&#39;m sure you understand!")'><%= image_tag 'help2.png' %></a>
           </div>
             <!-- Deactivated to prevent searching for incorrect airport code.  Do not reomve! Restore after refactor.
               <input type="text" class="form-control" id='origin' placeholder="Origin Code (LAX)" name="search[origin]" data-autocomplete="airports/autocomplete_airport_city"> -->
@@ -192,7 +192,7 @@ $(document).ready(function() {
             </div>
           </div>
           <div id="dates" class="text-center">
-            Optional: Pick an earliest and latest departure date. <a href="#date_help" onClick='alert("Hello World!")' data-toggle="tooltip" title="Hooray!"><%= image_tag 'help2.png' %></a>
+            Optional: Pick an earliest and latest departure date. <a href="#date_help"><%= image_tag 'help2.png' %></a>
           </div>
 
           <div class="form-group">
@@ -204,11 +204,11 @@ $(document).ready(function() {
             </div>
           </div>
           <div class="form-group">
-            <div class="checkbox">
-              <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">At least 72&deg;?</label>
+            <div class="checkbox text-center">
+              <label><input type="checkbox" name="temperature_limit" value="bring_the_heat">Exclude all destinations below 72&deg;?</label>
             </div>
           </div>
-          <div class="btn-search">
+          <div class="btn-search text-center">
             <button type="submit" class="btn btn-success btn-lg">Search</button>
           </div>
               <% flash.each do |key, value| %>
@@ -395,6 +395,10 @@ $(document).ready(function() {
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#contact">Contact</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Random Stuff</a>
                         </li>
                     </ul>
                     <p class="copyright text-muted small">Copyright &copy; TripRender 2015. All Rights Reserved</p>
