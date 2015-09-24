@@ -33,18 +33,7 @@ class FlightsController < ApplicationController
   end
 
   def generate
-    @airport_data = Airport.major_airports
   end
 
 end
 
-
-#   def search
-#     @results = []
-#       @response = Api::Sabre::Latest.flights(params[:search])
-#         if @response["staus"] = "Not Processed"
-#           redirect_to root_path
-#         else
-#       @results << JSON.parse(@response.body)
-#   end
-# end

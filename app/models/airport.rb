@@ -2,7 +2,7 @@ class Airport < ActiveRecord::Base
 	belongs_to :Airports
 	validates :code, uniqueness: true
 	scope :greater_than_72, -> {where("current_high_temp >?", 72)}
-	scope :major_airports, -> {where("direct_flights >?", 50)}
+	scope :major_airports, -> {where("direct_flights >?", 20)}
 
 	def self.build_from_json(raw_data) 
 		a = Airport.new
@@ -56,6 +56,21 @@ class Airport < ActiveRecord::Base
   	end
   end
 
+  def self.update_tripadvisor_geo_code
+  	airports = Airport.all
+  	airports.map do |geo_code_update|
+  		lat = geo_code_update.lat
+  		lon = geo_code_update.lon
+  		response = Api::Tripadvisor::Geocache.tripadvisor(lat, lon)
+  		begin
+  			tripadvisor_city_geo_code = JSON.parse(response.body)["data"][0]["ancestors"][0]["location_id"]
+  			geo_code_update.update(tripadvisor_city_geo_code: "#{tripadvisor_city_geo_code}")
+  		rescue
+  			geo_code_update.update(tripadvisor_city_geo_code: "0")
+  		end
+  	end
+  end
+  
   def self.update_airports
   	airports = Airport.all
   	airports.map do |remove_small_airports|
@@ -71,24 +86,5 @@ class Airport < ActiveRecord::Base
   end
 
 end	
-
-
-	# validates :lat, uniqueness: true
-	# validates :lon, uniqueness: true
-	# validates :name, uniqueness: true
-	# validates :city, uniqueness: true
-	# validates :state, uniqueness: true
-	# validates :country, uniqueness: true
-	# validates :woeid, uniqueness: true
-	# validates :tz, uniqueness: true
-	# validates :phone, uniqueness: true
-	# validates :type, uniqueness: true
-	# validates :email, uniqueness: true
-	# validates :url, uniqueness: true
-	# validates :runway_length, uniqueness: true
-	# validates :elev, uniqueness: true
-	# validates :icao, uniqueness: true
-	# validates :direct_flights, uniqueness: true
-	# validates :carriers, uniqueness: true
 
 

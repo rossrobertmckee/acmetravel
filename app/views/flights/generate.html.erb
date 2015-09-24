@@ -1,23 +1,8 @@
-<!-- page for search field autocomplete generation -->
+<!-- page for search field autocomplete generation and testing purposes -->
 
 <h3>Well, hello there...</h3>
 <br />
 <br />
 
-<% recipient_email = "rossrobertmckee@gmail.com" %>
-<% itinerary_body = "Los Angeles Miami
-Departing at 10:45AM and Arriving at 6:46PM on Wednesday, September 16
-via American Airlines flight 1297
 
-Miami Los Angeles
-Departing at 6:59AM and Arriving at 9:25AM on Friday, September 18
-via American Airlines flight 1352" %>
-<% x = ItineraryMailer.itinerary("#{recipient_email}", "#{itinerary_body}") %>
-<% x.deliver %>
-
-<% @airport_data.each do |x| %>
-	<% if x.country == "United States" %>
-		option value="<%= x.code %>"><%= x.code %> - <%= x.city %> 
-		<br />
-	<% end %>
-<% end %>
+<br />

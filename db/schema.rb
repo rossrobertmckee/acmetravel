@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903015452) do
+ActiveRecord::Schema.define(version: 20150922195455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150903015452) do
     t.datetime "updated_at"
     t.integer  "current_high_temp"
     t.integer  "current_low_temp"
+    t.integer  "tripadvisor_city_geo_code"
   end
 
   add_index "airports", ["city"], name: "index_airports_on_city", using: :btree

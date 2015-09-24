@@ -27,6 +27,87 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- More Help Modal -->
+<div id="moreHelpModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- More Help Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alright, let's go into detail!</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Detailed intructions and commonly asked questions:</h3><br />
+          <ul>
+            <li><a href="#search_form">The Search Form</a></li>
+              <ul>
+                <li><a href="#origin">Origin</a></li>
+                <li><a href="#destination_type">Destination Type</a></li>
+                <li><a href="#max_fare">Max Fare</a></li>
+                <li><a href="#trip_length">Trip Length</a></li>
+                <li><a href="#date_range">Date Range</a> (optional)</li>
+              </ul>
+            <li><a href="#destination_results_page">Destination Results Page</a></li>
+            <li><a href="#departure_arrival_page">Departure and Arrival Page</a>(Booking)</li>
+          </ul>
+          <br />
+          <hr />
+          <a  name="search_form"></a>
+          <h4><u>The Search Form</u></h4>
+          <p>To access our flight data and search for your next geaway, you must use click on either of the two green buttons located on the home page.  A form will load containing six input fields and a checkbox. Four of the fields are mandatory: origin, destination type, max fare, and trip length. The other two fields are optional, but are very helpful in narrowing down trip options to only days you are available to travel.</p>
+            <ul>
+              <a  name="origin"></a>
+              <li><b><u>Origin:</u></b> <p>This field should be pretty self explanitory, but...  Use this field to indicate which airport you'd like to leave from.  If you have difficulty finding your airport, it may be because it isn't available in our system yet.  Currently, our systems can only search for flights from major airports (Usually airports with over 10 major carriers).  Don't worry though, we're constantly adding new airports all the time!<p/></li>
+              <a  name="destination_type"></a>
+              <li><b><u>Destination Type:</u></b> <p>The best most super funnest, like totally awesome, part of the search form. Instead of chosing a destination, you get to tell us what type of getaway, vacation, or escape you're looking for! On our site your results are narrowed down to one destination or only places you know!  With us, you may end up traveling somewhere you've never heard of before!</p>
+              <a  name="max_fare"></a>
+              <li><b><u>Max Fare:</u></b> <p>Here you can tell us the most you're willing to spend on a flight.  It probably goes without saying that the more you are willing to spend, the more options you'll get.  Regardless, you can sometimes find some soaking-wet deals for under a hundred bucks.</p>
+              <a  name="trip_length"></a>
+              <li><b><u>Trip Length:</u></b> <p>This is probably a new field for those who are familiar with booking travel online.  "Normal" travel websites have you select a departure and return date, but at TripRender we like to do things differently (well, somethings). In order to find ALL your destination possibilities, we search the next 90 days for available flights using the travel length you indicate. In other words, if you tell us that you can only travel for 5 days, we'll find all the 5 day possibilities within the next 90 days. Currently, we can only search for trips up to 16 days long, but this number will continue to grow as our site does. <em>WAIT! But what if I need specific days?</em> Don't worry, keep reading, our date range feature helps with that...</p>
+              <a  name="date_range"></a>
+              <li><b><u>Date Range Feature:</u></b> <p>This feature is completely optional, but is very helpful if you need control over your travel dates. Before continuing, we must recommend that you do at least on search without using this feature.  At least that way you can see all your destination possibilities (I mean, what else are sick-days for?).  The two input fields for the Date-Range feature are to indicate the soonest and absolute latest you can leave. Just to calrify, these fields are NOT departure and return dates.  These fields indicate the range of dates you can depart. So, if you want to escape from the significant-other for a week, but can only travel during July 1st through July 20th, then tell us that by using both the travel length and the date-range feature. Otherwise, If you need to start your journey on a specific day, then set  both fields to the same date. In other words, if you want to travel on July 14th for 1 week, set your travel length to 7 days and both date-range fields to July 14th. If you're still confused, try doing a couple searches... We're sure you'll get the hang of it.</p>
+            </ul>
+            <hr />
+          <a  name="destination_results_page"></a>
+          <h4><u>Destination Results Page:</u></h4>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!-- Contact Modal -->
+<div id="contactModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Contact Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Contact info:</h4>
+      </div>
+      <div class="modal-body">
+        <h3>The 3 best ways to reach us:</h3><br />
+          <ul>
+            <li>Tweet us @triprender.</li><br />
+            <li>Email us at: contact@triprender.com</li><br />
+            <li>Hand write us a letter, scan it, attach the scanned copy to an email, and send it to: contact@triprender.com</li>
+          </ul>
+          <br /><br />
+          Party On,<br />
+          -The TripRender team
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <%= yield %>
