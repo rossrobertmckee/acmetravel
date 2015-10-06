@@ -29,17 +29,23 @@
   <div class="header-section col-xs-12">
     <div class="info-section col-md-offset-1 col-md-5 col-xs-12">
     <% x = @booking_flights.booking_cost.first %>
-    <h2 style="color: black"><%= WorldAirports.iata(x.origin_title).city %> to <%= WorldAirports.iata(x.destination_title).city %></h2>
+    <h2><%= WorldAirports.iata(x.origin_title).city %> to</h2><h1><%= WorldAirports.iata(x.destination_title).city %></h1>
     <h5>where they have a current high of 
-    <% temp = Airport.find_by(code: "#{x.destination_title}") %> 
-    <%= temp.current_high_temp %>&deg;</h5>
+    <% airport_data = Airport.find_by(code: "#{x.destination_title}") %>
+    <%= airport_data.current_high_temp %>&deg;</h5>
     <h4>
     Departing <%= x.departure_date_title %>
     <br />
     Returning on <%= x.return_date_title %></h4>
     </div>
     <div class="tripadvisor-section col-md-5 col-xs-12">
-      <h2>Where am I?</h2>
+      <% code = airport_data.tripadvisor_city_geo_code %>
+      <% if code != nil %>
+        <% image = TripAdvisor.awards_image_small("#{code}") %>
+        <% if image != nil %>
+          <%= image_tag("#{image}") %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="itinerary-section col-md-10 col-md-offset-1 col-xs-12">
@@ -142,6 +148,7 @@
 </div>
 </div>
 </div>
+<hr />
 <% end %>
 </div>
 </div>

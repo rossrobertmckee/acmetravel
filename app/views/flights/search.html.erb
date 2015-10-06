@@ -1,3 +1,5 @@
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -46,7 +48,7 @@
                 <div class="city-headline">
                   <span class="glyphicon glyphicon-list pull-left"></span>&nbsp<b><%= city_name %>
                   <% if code != nil %>
-                  <% x = TripAdvisor.awards_image("#{code}") %>
+                  <% x = TripAdvisor.awards_image_tiny("#{code}") %>
                     <% if x != nil %>
                       <%= image_tag("#{x}") %>
                     <% end %>
@@ -68,13 +70,12 @@
                 <br />
                 RETURN <%= (fare.return_date_time.to_time).strftime("on %A, %B %-d")  %>
               </div>
-
                 <% fare.links.each do |flight_link| %>
                   <% booking_link = flight_link["href"] %>
                   <div class="bton row">
                     <%= link_to "Check Times", search_bookings_path(:link => booking_link), :class => 'btn btn-lg btn-primary' %>
                   </div>
-                  <hr />  
+                  <hr /> 
               <% end %>
             <% end %>
             </div>
@@ -85,6 +86,7 @@
   </div>
 </div>
 </div>
+
 
 
 

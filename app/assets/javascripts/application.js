@@ -23,7 +23,7 @@
 //= require moment
 
 //= require jquery-ui
-
+//= require bootstrap-combobox.js
 // Form Validation lib
 //= require dist/js/formValidation.min.js
 //= require dist/js/framework/bootstrap.min.js

@@ -1,23 +1,4 @@
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.jquery.js"></script>
-  <script src="https://raw.githubusercontent.com/danielfarrell/bootstrap-combobox/master/js/bootstrap-combobox.js"></script>
-
-<!--  Deactivated to prevent searching for incorrect airport code.  Do not remove!
-  <script>
-      $(function () {
-        $('#origin').autocomplete({
-          appendTo : "searchModal",
-        }); 
-      });
-  </script> --> 
-
-<!-- In place for autocomplete.  Remove after Autocomple refactor! -->
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.combobox').combobox();
-  });
-</script>
-
 <script>
 $(document).ready(function() {
     $('#signinForm').formValidation({
@@ -157,6 +138,12 @@ $(document).ready(function() {
                   <option value="LGA">LGA - New York</option>
               </select>
           </div>
+          <!-- In place for autocomplete.  Remove after Autocomple refactor! -->
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $('.combobox').combobox();
+            });
+          </script>
           <div id="fare_length" class="text-center">
             What type of trip are you looking for?<br />Pick what sounds best.
           </div>
@@ -410,9 +397,19 @@ $(document).ready(function() {
 
   <!-- script references -->
 
-    <!-- script src="js/bootstrap.min.js">/script> -->
     <!-- Moments.js minified CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
-    <!-- Bootstrap datepicker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.jquery.js"></script> -->
+
+
+<!--  Deactivated to prevent searching for incorrect airport code.  Do not remove!
+  <script>
+      $(function () {
+        $('#origin').autocomplete({
+          appendTo : "searchModal",
+        }); 
+      });
+  </script> --> 
+
+

@@ -6,17 +6,25 @@
 
 
 .header-section {
-    padding: 70px 0;
-    color: #f8f8f8;
-    background-image: url(coastbanner.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+  padding: 70px 0;
+  color: #f8f8f8;
+  background-image: url(coastbanner.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .master-booking-container {
-		padding-top: 50px;
-	  background-image: url('coast.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+	padding-top: 50px;
+  background-image: url('coast.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
+
+.info-section {
+	background-color:rgba(0,0,0,0.2)
+}
+
+// .tripadvisor-section {
+//	background-color:rgba(0,0,0,0.2)
+//}
