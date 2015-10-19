@@ -1,3 +1,7 @@
+<style media="screen">
+  .header-section { background-image: url(<%= @image %>); }
+</style>
+
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
   <div class="container topnav">
     <div class="navbar-header">
@@ -27,7 +31,7 @@
 
 <div class="master-booking-container">
   <div class="header-section col-xs-12">
-    <div class="info-section col-md-offset-1 col-md-5 col-xs-12">
+    <div class="info-section col-md-offset-1 col-md-3 col-xs-12">
     <% x = @booking_flights.booking_cost.first %>
     <h2><%= WorldAirports.iata(x.origin_title).city %> to</h2><h1><%= WorldAirports.iata(x.destination_title).city %></h1>
     <h5>where they have a current high of 
@@ -37,18 +41,18 @@
     Departing <%= x.departure_date_title %>
     <br />
     Returning on <%= x.return_date_title %></h4>
-    </div>
-    <div class="tripadvisor-section col-md-5 col-xs-12">
-      <% code = airport_data.tripadvisor_city_geo_code %>
+    <br />
+    <% code = airport_data.tripadvisor_city_geo_code %>
       <% if code != nil %>
         <% image = TripAdvisor.awards_image_small("#{code}") %>
         <% if image != nil %>
           <%= image_tag("#{image}") %>
         <% end %>
       <% end %>
+      <br />
     </div>
-  </div>
-  <div class="itinerary-section col-md-10 col-md-offset-1 col-xs-12">
+
+  <div class="itinerary-section col-md-6 col-md-offset-1 col-xs-12">
 <% option_count = 1 %>
 <% @booking_flights.booking_cost.each do |y| %>
     <h3 style="color: black">Itinerary Option <%= option_count %> for <span style="color: red">$<%= y.total_fare %></span></h3>
@@ -152,6 +156,7 @@
 <% end %>
 </div>
 </div>
+
 
 
 

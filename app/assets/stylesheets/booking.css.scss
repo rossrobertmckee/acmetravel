@@ -8,9 +8,16 @@
 .header-section {
   padding: 70px 0;
   color: #f8f8f8;
-  background-image: url(coastbanner.jpg);
+  
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.itinerary-section {
+  background-color:rgba(0,0,0,0.2);
+  height:400px;
+  overflow:auto;
+  color:black;
 }
 
 .master-booking-container {
@@ -22,7 +29,8 @@
 }
 
 .info-section {
-	background-color:rgba(0,0,0,0.2)
+	background-color:rgba(0,0,0,0.2);
+  height:400px;
 }
 
 // .tripadvisor-section {

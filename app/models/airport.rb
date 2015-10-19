@@ -85,6 +85,12 @@ class Airport < ActiveRecord::Base
     "#{self.code} - #{self.city}"
   end
 
+  def self.image(img)
+
+  	ActionController::Base.helpers.image_tag("#{img}.jpg")
+  end
+
+
 end	
 
 
